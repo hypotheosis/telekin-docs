@@ -9,15 +9,15 @@ import { CONTACT_URL } from '../../../../site-config.mjs';
 
 ## My setup link doesn't work
 
-The page says **This link has expired. Ask for a new one.** A setup link works once, and only for 24 hours, and a newer one replaces it. If you already set up your account with it, just sign in instead. Otherwise, ask the person who invited you to send a new setup email. See [Set up your account](/start/set-up-your-account/).
+The page says **This link has expired. Ask for a new one.** If you already set up your account with it, just sign in instead. Otherwise, see [Set up your account](/start/set-up-your-account/) for the fix.
 
 ## I forgot my password
 
-On the sign-in page, choose **Forgot your password?**, type your email and choose **Send the link**. The email's link works once, for 1 hour. Choosing a new password signs you out everywhere. If you set up a passkey, you can also choose **Sign in with a passkey** instead.
+On the sign-in page, choose **Forgot your password?**, type your email and choose **Send the link**, then follow the email. If you set up a passkey, you can also choose **Sign in with a passkey** instead. See [Set up your account](/start/set-up-your-account/) for how the reset link works.
 
 ## It keeps saying "Email or password is incorrect"
 
-Check the email address and password for typos first. After 10 wrong passwords in a row, your account is locked for 15 minutes, and the page shows the same message while it's locked, on purpose. Wait 15 minutes and try again, or reset your password.
+Check the email address and password for typos first. If they're right, the account may be temporarily locked — the page keeps showing the same message while it's locked. See [Set up your account](/start/set-up-your-account/) for how long, or reset your password.
 
 ## The connector won't connect
 
@@ -53,11 +53,11 @@ It needs a nudge. See [Get your AI to use Telekin without being asked](/how-to/g
 
 ## Free plan: can't add a second connector
 
-Claude's free plan allows one custom connector. Remove the one you don't need, or use a different app for the second connection. To change a connector's settings later, remove it and add it again.
+The free plan allows only one custom connector — see [Connect Claude](/how-to/connect/claude/). Remove the one you don't need, or use a different app for the second connection. To change a connector's settings later, remove it and add it again.
 
 ## A header seems to be ignored
 
-If you ever have access to more than one catalog, the header that picks them is `X-OKF-Catalogs` (plural), for example `X-OKF-Catalogs: t01`. A misspelled header is silently ignored, with no error. Most people don't need this header at all, because the key already points at your catalog.
+Most people don't need a catalog header at all, because the key already points at your catalog. If you use one, a misspelled name is silently ignored, with no error — check the spelling first. The full header spec is in [Connection settings](/reference/connection-settings/).
 
 ## Anything else
 

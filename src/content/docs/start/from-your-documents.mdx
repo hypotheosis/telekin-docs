@@ -7,27 +7,29 @@ sidebar:
 
 import { Steps, Aside } from '@astrojs/starlight/components';
 
-You already have written-down context: a README, your notes, a project brief, your own bio. In this tutorial you hand one document to your AI and watch the useful parts land in Telekin.
+You probably already have context written down locally: a README, AGENTS.md, your notes, a project brief, your own bio, etc. 
 
+This tutorial shows you how to read local documents into Telekin.
+
+<Aside type="note" title="Set up Telekin first!">
 You'll need an AI app already connected to Telekin. If you haven't done that yet, start with [Your first 15 minutes](/start/first-15-minutes/).
+</Aside>
 
 <Aside type="caution" title="Keep it non-confidential">
-  Don't paste anything your employer considers confidential. Personal projects, your own tools and setup, how you like to work, and public information about your job are all fine.
+  Don't paste anything your employer considers confidential. See [Keep private material out of Telekin](/how-to/guides/keep-private-material-out/) for what's fine to store.
 </Aside>
 
 <Steps>
 
-1. **Pick one document** you have on hand, such as a README, a project brief or your own bio. Short is fine.
+1. **Pick one document** you have on hand, such as a README, a project brief or your own bio. It's okay if it's short.
 
-2. **Start a new chat and paste the document.** Under it, say:
+2. **Start a new chat and paste the document.** Under it, say the "fill it from a document" line from the [Prompt library](/reference/prompt-library/#fill-it-from-a-document).
 
-   > Record the durable facts from this in my catalog.
+   (Here "[catalog](/reference/glossary/#catalog)" means your Telekin memory.)
 
-   (Here "catalog" means your Telekin memory.)
+   Your AI works out which facts will still matter later, and saves them to Telekin. Allow it to save if it asks permission.
 
-   Your AI works out which facts will still matter later, and saves them to Telekin. It may ask your permission to save; allow it.
-
-3. **Ask what it saved.** Type "What did you record?" You should get a list of what went in. If something is missing or wrong, say so and ask it to fix it.
+3. **Ask what it saved.** Type "What did you record?" You should get a list of what went in. If something is missing or wrong, say so and ask the AI to fix it.
 
 4. **Open a new chat and ask about it.** Choose something the document covered and ask about it without pasting anything. You should see your AI search Telekin and answer from what it recorded.
 

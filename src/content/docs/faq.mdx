@@ -8,35 +8,33 @@ sidebar:
 import Waitlist from '../../components/Waitlist.astro';
 import { CONTACT_URL } from '../../site-config.mjs';
 
-Short answers, each pointing to the page with the full story.
-
 ## Is my data used to train AI?
 
-No. Telekin doesn't use your data to train AI models. The AI app you connect has its own policy, though, so check its privacy settings. See [Your data](/explanation/your-data/).
+No. Telekin doesn't use your data to train AI models. Each AI app you connect has its own policy, though, so check its privacy settings separately. See [Your data](/explanation/your-data/).
 
 ## Who can see my data?
 
-You, through your account and the keys and app connections you make, and the operator of the Telekin server, who can technically read catalogs. Nobody else has access to yours. Everything is encrypted in transit. See [Your data](/explanation/your-data/).
+Data is encrypted in transit with TLS and at rest on Telekin's servers. If you contact support, however, with your permission they can read your data to help you figure out a problem. See [Your data](/explanation/your-data/).
 
 ## What will it cost?
 
-It's free during the private test. Pricing for after the test isn't final; we'll tell you before anything changes.
+It's free during the private test. Pricing for after the test isn't final. We'll tell you before anything changes.
 
 ## Which AIs work with it?
 
-Claude, ChatGPT, Claude Code, Cursor, VS Code, Windsurf, Codex CLI, Gemini CLI and Cline work today. Claude on the web and desktop and ChatGPT connect by signing in with your Telekin account in your browser (OAuth); developer tools use a key you make. See [Connect your AI](/how-to/connect/).
+Claude, ChatGPT, Claude Code, Cursor, Copilot, Windsurf, Codex CLI, Gemini CLI and Cline work today. See [Connect your AI](/how-to/connect/).
 
 ## Can I self-host it?
 
-Yes. Telekin runs on okf-mcp, which is open source (AGPL-3.0), and every feature is in the open-source version. Look for the okf-mcp project by name.
+Yes. Telekin runs on [okf-mcp](https://github.com/hypotheosis/okf_mcp), which is open source under AGPL-3.0. See instructions in that repo for self-hosting.
 
 ## Can I delete everything?
 
-Yes, on request: see [Your data](/explanation/your-data/). You can <a href={CONTACT_URL}>ask us</a> and your memory is deleted, or you get a full copy first. A self-serve export is planned. See also [Review, undo and export](/how-to/guides/review-undo-export/).
+Yes! You can <a href={CONTACT_URL}>ask us</a> to have catalogs deleted. See [Your data](/explanation/your-data/) for the details, and [Review, undo and export](/how-to/guides/review-undo-export/).
 
 ## Does it work on my phone?
 
-Connectors you add to Claude on the web or desktop should show up in Claude's mobile apps, so set it up there first. Other apps on phones aren't confirmed yet. See [Connect Claude](/how-to/connect/claude/).
+If you set up Telekin in your Claude desktop or web app first, it should show up in Claude's mobile apps. Other apps on phones aren't confirmed yet. See [Connect Claude](/how-to/connect/claude/).
 
 ## Does it work offline?
 
@@ -44,11 +42,11 @@ No. Telekin is a hosted server, so your AI needs an internet connection to reach
 
 ## Can my team share a catalog?
 
-Yes. A catalog can belong to a team, and everyone on the team connects their own AIs to it with their own Telekin account, so each person's changes are recorded under their own name. During early access we set teams up for you: <a href={CONTACT_URL}>ask us</a>.
+Yes. A [catalog](/reference/glossary/#catalog) can belong to a team, and everyone on the team connects their own AIs to it with their own Telekin account, so each person's changes are recorded under their own name. During the private test <a href={CONTACT_URL}>ask us</a> to set up teams for you.
 
 ## How is it different from my AI's built-in memory?
 
-Built-in memory belongs to one app, and you can't really inspect or version it. Telekin is one memory that several AIs share, stored as plain Markdown you can read, undo and export. See [How Telekin compares](/explanation/how-telekin-compares/).
+Built-in memory belongs to one app, and you can't really inspect or version it. Telekin is one memory that several AIs share, stored as plain Markdown you can read, undo, edit, and export. See [How Telekin compares](/explanation/how-telekin-compares/).
 
 ## How is it different from Obsidian or other note tools?
 
@@ -56,6 +54,8 @@ A vault lives on one machine and mixes your notes with your AI's. Telekin is hos
 
 ## How do I get access?
 
-With an invite. Telekin is in a private test, so if you don't have one yet, join the waitlist. Your invite is an email with a link to set up your account: see [Set up your account](/start/set-up-your-account/). Then Claude on the web and ChatGPT sign in with that account, and for developer tools you [make a key](/how-to/guides/make-a-key/) yourself. [Connect your AI](/how-to/connect/) shows what each app needs.
+Telekin is in a private test, so access is invite-only right now. 
+
+Once you've received your invite email, see [Set up your account](/start/set-up-your-account/) to get started. Then Claude on the web and ChatGPT sign in with that account. For other tools you [make a key](/how-to/guides/make-a-key/) yourself. [Connect your AI](/how-to/connect/) shows what each app needs.
 
 <Waitlist />

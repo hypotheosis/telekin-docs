@@ -3,7 +3,7 @@ title: Set up your account
 description: Open the link in your setup email, choose a password or a passkey, and find your way back in later.
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, Aside } from '@astrojs/starlight/components';
 import Waitlist from '../../../components/Waitlist.astro';
 
 Your Telekin account is how you sign in, and how your AI apps get access to your memory. You set it up once, from an email.
@@ -12,32 +12,25 @@ Your Telekin account is how you sign in, and how your AI apps get access to your
 
 ## The setup email
 
-When you're invited, you get an email asking you to set up your account. It has one link in it. The link works once, and only for 24 hours. If you're sent a newer one, the older link stops working.
+When you're invited, you get an email asking you to set up your account via a private signup link. Click that link to get started.
+
+<Aside type="note" title="If the link has expired">
+Links expire if 24 hours have passed, the link was already used, or a newer one was sent. Search your email for a newer signup email, or ask the person who invited you to send a new setup email.
+</Aside>
 
 ## Set up your account
 
 <Steps>
 
 1. Open the link in the email. A page called **Set up your account** opens.
-2. Choose how you'll sign in. You can do either, or both:
-   - **A password.** Type one of 12 or more characters, type it again under **Confirm the password**, and choose **Set password and sign in**. Common passwords are refused.
-   - **A passkey** (your device signs you in with a fingerprint, face or PIN, so there's no password to remember). Under **Or use a passkey**, give it a name if you like, and choose **Register a passkey and sign in**. Your browser asks you to confirm.
-3. You're signed in, and your browser opens your Telekin console.
+2. Choose how you'll sign in. If you chose a password, you can add a passkey later on the **Account** page, and the other way round.
+3. You're signed in, and your browser opens your Telekin console. The console is where you manage your account and what your apps can reach. 
 
 </Steps>
 
-The console is your Telekin's web pages, where you manage your account and what your apps can reach. If you chose a password, you can add a passkey later on the **Account** page, and the other way round.
+## Your Telekin console
 
-## Your Telekin address
-
-Your Telekin address is `https://app.telekin.ai`:
-
-- **The address on its own opens the console.** Bookmark it.
-- **Your AI apps connect to `https://app.telekin.ai/mcp`**. The guides in [Connect your AI](/how-to/connect/) call this your Telekin address with `/mcp`.
-
-## If the link has expired
-
-The page says **This link has expired. Ask for a new one.** This happens if 24 hours have passed, the link was already used, or a newer one was sent. Ask the person who invited you to send a new setup email.
+The telekin console is available at https://app.telekin.ai. **Your AI apps connect to `https://app.telekin.ai/mcp`**. The guides in [Connect your AI](/how-to/connect/) call this your Telekin address with `/mcp`.
 
 ## Signing in later
 

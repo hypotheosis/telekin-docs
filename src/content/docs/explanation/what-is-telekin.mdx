@@ -5,27 +5,27 @@ sidebar:
   order: 1
 ---
 
-**Telekin is a memory that your AI apps share, and that you own.** You connect it once to each AI you use, such as Claude, ChatGPT, Claude Code or Cursor. From then on, what you tell one of them, they all know: your projects, the tools you use and how you like to work. You never have to re-explain yourself in a new chat or a new app. Every change your AIs make is recorded, and you can see and undo any of it.
+**Telekin is a shared memory for your AI apps that you own.** You connect it once to each AI you use, such as Claude, ChatGPT, Claude Code or Cursor. From then on, what you tell one of them, they all know: your projects, the tools you use and how you like to work. You never have to re-explain yourself in a new chat or a new app. Every change your AIs make is recorded, and you can see and undo any of it.
 
-This page explains the ideas behind it, so you know what to expect.
+If you're the kind of person who frequently uses multiple AI providers, then Telekin is absolutely the thing for you, because you no longer have to worry about "is this memory only in my claude.ai chats" -- it's in Telekin, so it's accessible from any AI tool. And, you can read your knowledge base in the Telekin web interface as well.
 
 ## The idea: one memory, many AIs
 
-Most AI apps remember only what you told that app. Telekin keeps your memory in one place that sits outside any single app. Think of it as a hub with spokes: the memory is the hub, and each AI app you connect (Claude, Claude Code, Cursor and others) is a spoke that reads from it and writes back to it. Tell one AI something and the others can know it too.
+Most AI apps remember only what you told that app. Telekin keeps your memory in one place that sits outside any single app. Think of it as a universal data store. Tell one AI something and the others can know it too.
 
-The apps reach Telekin through MCP, the Model Context Protocol, an open standard that lets an AI app use outside tools. See [Connect your AI](/how-to/connect/) for the apps that work today.
+AI apps use Telekin via MCP, the Model Context Protocol. See [Connect your AI](/how-to/connect/) for the apps that work today.
 
 ## Concepts
 
 Your memory is made of **concepts**: one page for each project, system, person or decision. A concept is plain text that your AI and you can both read. Concepts link to each other, so an AI that finds your bike-shop website can follow a link to the calendar it uses and the decision behind it, and get a connected picture instead of loose snippets. For an example, see [What a concept looks like](/reference/what-a-concept-looks-like/).
 
-## Drafts
-
-Every change starts as a draft, called a changeset. Your AI collects its edits in the draft and nothing is visible, to you or to your other AIs, until the AI **publishes** it. Until then the draft can be inspected or thrown away. This is why an AI can write freely without leaving half-finished or wrong notes behind.
-
 ## Provenance
 
-Each concept records who wrote it and when, and can list the sources a fact came from: a document, a conversation, a check against the real thing. When two AIs share one memory, that matters: you can see who wrote what, and how far to trust it. Concepts can also carry open questions, such as "is this still true?", for someone to answer later.
+Each concept records who wrote it and when, and can list the sources a fact came from: a document, a conversation, a check against source code or other external source of truth, etc. Provenance lets you see who wrote what and whether other AIs should trust it. Concepts can also carry open questions, such as "is this still true?", for someone to answer later.
+
+## Drafts
+
+Every change starts as a draft, called a changeset. Your AI collects its edits in the draft while it's working. Drafts aren't visible to your other AIs, until they're **published**. Until then the draft can be inspected or thrown away. This is why an AI can write freely without leaving half-finished or wrong notes behind.
 
 ## History
 
@@ -33,6 +33,6 @@ Every publish is kept, with a short message saying what changed. You can ask you
 
 ## Upkeep
 
-A memory that only grows becomes a junk drawer. Telekin has checks your AI can run for concepts that have grown too long, that haven't been looked at in a long time, or that nothing links to, and for broken links. It can also move, rename or split concepts and keep the links working. You can ask for this with a prompt from the [Prompt library](/reference/prompt-library/).
+A memory catalog that only ever grows becomes a junk drawer of stale, outdated, or irrelevant facts. Telekin has checks your AI can run to keep things fresh, up-to-date, and relevant. It can also move, rename or split concepts. You can ask for this with a prompt from the [Prompt library](/reference/prompt-library/).
 
 For the full list of what your AI can do, see [What your AI can do](/reference/tools/).

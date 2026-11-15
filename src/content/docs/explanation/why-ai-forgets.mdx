@@ -11,14 +11,14 @@ You connected Telekin, you asked a question it should have known, and your AI an
 
 Connecting Telekin gives your AI a set of tools. An AI only uses a tool when something prompts it to. Nothing in a fresh chat says "you have a memory, look in it first", so unless your question or your settings point that way, the AI answers from what it already knows and never opens the tool.
 
-Long chats make it worse: instructions given early can fade as the conversation grows.
+Long chats make it worse, since instructions given early can fade as the conversation grows. This is especially common with longer context windows.
 
 ## What helps
 
-- **Custom instructions (the extra line).** Add one short instruction to your AI app's settings, telling it to search Telekin whenever you mention a project, system or person, and to record what is worth keeping. See [Get your AI to use Telekin without being asked](/how-to/guides/use-without-asking/).
-- **Name things in your question.** "Why is the billing service slow?" gives your AI a name to search for. "Why is it slow?" doesn't.
-- **Ask it to check.** "Check Telekin for what we know about `<project>` before answering" works every time.
-- **The Claude Code hook.** Claude Code can run a small startup script that reminds it, at the start of every session, which catalog is yours. Together with instructions in its global `CLAUDE.md` file, it makes Claude Code check Telekin on its own. See [Connect Claude Code, enhanced](/how-to/connect/claude-code-enhanced/).
+- **Custom instructions.** Add one short instruction to your AI app's settings, telling it to search Telekin whenever you mention a project, system or person, and to record what is worth keeping. See [Get your AI to use Telekin without being asked](/how-to/guides/use-without-asking/).
+- **Name things in your question.** A question that names a project or system gives your AI something to search for; "why is it slow?" doesn't. Examples are in the [guide's habits](/how-to/guides/use-without-asking/#habits-that-help).
+- **Ask it to check.** Telling it to check Telekin before answering works every time — the [Prompt library](/reference/prompt-library/#check-before-answering) has a ready prompt.
+- **Hooks.** Claude Code can run a small startup script that reminds it, at the start of every session, which catalog is yours. Together with instructions in its global `CLAUDE.md` file, it makes Claude Code check Telekin on its own. See [Connect Claude Code, enhanced](/how-to/connect/claude-code-enhanced/).
 
 ## Planned
 
