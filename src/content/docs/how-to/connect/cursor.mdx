@@ -1,21 +1,45 @@
 ---
 title: Connect Cursor
-description: Add Telekin to Cursor by editing its mcp.json file.
+description: Add Telekin to Cursor with one click and sign in in your browser, or edit its mcp.json file and use a key.
 sidebar:
   order: 4
 ---
 
-import { Steps } from '@astrojs/starlight/components';
+import { Steps, LinkButton } from '@astrojs/starlight/components';
 import LastChecked from '../../../../components/LastChecked.astro';
 import Waitlist from '../../../../components/Waitlist.astro';
 
-You'll need: your Telekin address with `/mcp` at the end (the `<server URL>` below), and a key you make for Cursor ([Make a key](/how-to/guides/make-a-key/)).
+You'll need: Cursor installed on this computer, and your Telekin account ([Set up your account](/start/set-up-your-account/)). If you add the server by hand with a key, you'll also need your Telekin address with `/mcp` at the end (the `<server URL>` below) and a key you make for Cursor ([Make a key](/how-to/guides/make-a-key/)).
 
 <Waitlist />
 
-## Add the server
+## Add it with one click
 
-Cursor reads its servers from a file called `mcp.json`. There are two places for it:
+The button below opens Cursor and offers to install Telekin. Cursor then signs in in your browser with your Telekin account, so there's no key to copy or paste.
+
+<LinkButton href="cursor://anysphere.cursor-deeplink/mcp/install?name=telekin&config=eyJ1cmwiOiJodHRwczovL2FwcC50ZWxla2luLmFpL21jcCJ9" icon="external">Add Telekin to Cursor</LinkButton>
+
+<Steps>
+
+1. Click **Add Telekin to Cursor**. If your browser asks whether to open Cursor, allow it.
+2. Cursor shows the server it's about to add, named `telekin`. Confirm the install.
+3. Cursor opens Telekin's page in your browser. If you're not signed in, sign in with your Telekin account first.
+4. The page, **Allow access?**, names the app that's connecting. Tick each memory Cursor may use (Telekin's screens call memories catalogs), and choose **read** or **write** for each; choose **write** if you want Cursor to save what it learns. Pick a **Default catalog**, the memory it uses when it doesn't name one, and choose **Approve**. (**Deny** connects nothing.)
+5. Go back to Cursor. `telekin` should show as connected in its MCP settings, with its tools listed.
+
+</Steps>
+
+If the button does nothing, Cursor may not be installed, or your browser may have blocked the link. You can also paste this link into your browser's address bar:
+
+```text
+cursor://anysphere.cursor-deeplink/mcp/install?name=telekin&config=eyJ1cmwiOiJodHRwczovL2FwcC50ZWxla2luLmFpL21jcCJ9
+```
+
+The link only tells Cursor the server's name and address, `https://app.telekin.ai/mcp`. It carries no key or account details. If the sign-in page expires before you finish, see [Troubleshoot](/how-to/guides/troubleshoot/).
+
+## Add it by hand with a key
+
+If you'd rather not sign in in the browser, or you want Telekin in a single project only, add the server to an `mcp.json` file yourself. There are two places for it:
 
 - `~/.cursor/mcp.json` is the **global** file: the server is available in every project.
 - `.cursor/mcp.json` inside a project is the **per-project** file: the server is available only there.
@@ -42,16 +66,18 @@ Cursor reads its servers from a file called `mcp.json`. There are two places for
 
 </Steps>
 
+To sign in in the browser instead of using a key, leave out the `headers` section.
+
 Menu names move around, so if you can't find the MCP page, search Cursor's settings for "MCP".
 
 ## Check it works
 
 In a Cursor chat, ask: **"What tools do you have from Telekin?"** You should see a list. Then ask **"What do you know about me?"**; on an empty memory it will say there's nothing yet.
 
-If it won't connect, check that the URL ends in `/mcp` and that the header value starts with `Bearer ` (with a space).
+If it won't connect, check that the URL ends in `/mcp`. If you use a key, check that the header value starts with `Bearer ` (with a space). If signing in or approving doesn't work, see [Troubleshoot](/how-to/guides/troubleshoot/).
 
 ## Undo it
 
-Delete the `"telekin"` entry from the `mcp.json` file you edited and restart Cursor.
+Remove `telekin` from Cursor's MCP settings, or delete the `"telekin"` entry from the `mcp.json` file you edited, and restart Cursor. If you signed in in the browser, also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the Cursor connection, then **Revoke**.
 
-<LastChecked date="2026-11-12" />
+<LastChecked date="2026-11-15" />
