@@ -1,23 +1,23 @@
 # Telekin privacy policy (DRAFT)
 
-> **Draft for legal review, 2026-11-17. Not published.** This file is in
-> the repository's `docs/` folder, not in `src/content/`, so the docs site
-> doesn't serve it. Lines marked **[CONFIRM]** are facts or choices that
-> still need deciding, or that need checking against production before
-> this goes live. "Reviewer notes" at the end lists what the lawyer should
-> look at. When it's approved, it replaces the waitlist-only page on
-> telekin.ai (`telekin-site/src/pages/privacy.astro`), and the docs page
-> "Your data" links to it.
+> **Draft, 2026-11-17. Not published.** This file is in the repository's
+> `docs/` folder, not in `src/content/`, so the docs site doesn't serve
+> it. The founder confirmed every open fact and choice on 2026-11-17.
+> "Reviewer notes" at the end lists what must be true before it goes live,
+> and the questions for a lawyer if it gets a review. When it's
+> published, it replaces the waitlist-only page on telekin.ai
+> (`telekin-site/src/pages/privacy.astro`), and the docs page "Your data"
+> links to it.
 
 **Last updated:** [date of publication]
 
 Telekin is a long-term memory for your AI apps. It is run by Hypotheosis
-**[CONFIRM: legal entity name, form and registered address]** ("we",
-"us"). This policy explains what we collect when you use Telekin, why, who
+LLC, a Delaware limited liability company, 78 Glocker Way Suite #264,
+Pottstown, PA 19465 ("we", "us"). This policy explains what we collect when you use Telekin, why, who
 we share it with, how long we keep it, and what you can ask us to do with
 it.
 
-Questions or requests: **[CONFIRM: privacy contact address]**.
+Questions or requests: privacy@telekin.ai.
 
 ## The short version
 
@@ -61,9 +61,9 @@ of them, but it can't recognise every kind.
 - An audit log of actions on your account, teams and catalogs, such as
   sign-ins, changes to keys and grants, membership changes, deletions,
   and staff unlocks. It includes the IP address of web requests.
-- Operational logs and error reports, which we use to keep the service
-  running. **[CONFIRM: what the production logs and telemetry contain and
-  where they are sent. They should not contain memory content.]**
+- Operational logs, traces and error reports, which we use to keep the
+  service running. They identify accounts and records only by internal
+  random IDs. They contain no names, email addresses or memory content.
 
 ### Billing
 
@@ -80,9 +80,22 @@ of them, but it can't recognise every kind.
   signed up from, and any campaign tags in the link you followed. The
   site's [existing privacy page](https://telekin.ai/privacy/) covers this
   in detail.
-- Our public websites set no cookies and run no analytics. The Telekin
-  console uses cookies only to keep you signed in and to protect forms
-  against forgery. **[CONFIRM: still true at launch.]**
+
+### Cookies and analytics
+
+- **Our public websites** use Google Analytics to understand how visitors
+  find and use them. Google Analytics sets cookies and receives your IP
+  address, browser details and the pages you visit. Where the law
+  requires your consent (for example in the EU and the UK), we ask before
+  setting these cookies. You can also block them in your browser, or with
+  Google's opt-out add-on.
+- **The Telekin console** uses cookies only to keep you signed in and to
+  protect forms against forgery. They're necessary for the console to
+  work. The console runs no analytics.
+- **Payments:** when you subscribe or manage billing, you're sent to
+  Stripe's own pages. Stripe sets its own cookies there, for example to
+  prevent fraud, under [Stripe's privacy policy](https://stripe.com/privacy)
+  and cookie policy. We don't control them.
 
 ## Why we use it
 
@@ -95,17 +108,22 @@ of them, but it can't recognise every kind.
 - **To keep it secure and working:** to detect abuse, investigate
   problems, and keep the audit trail.
 - **To meet legal obligations:** for example tax and accounting records.
-- **To tell you about Telekin:** product news, but only if you agreed, and
-  you can unsubscribe at any time. **[CONFIRM: do we send any marketing
-  email to customers?]**
+- **We don't send marketing email.** The only emails we send are the ones
+  the service needs. If that ever changes, we'll ask first, and every such
+  email will have an unsubscribe link.
 
 We don't sell your personal information. We don't use your memory for
 advertising, and we don't use it to train AI models, ours or anyone
 else's.
 
-**[CONFIRM with the lawyer: the legal bases for EU and UK users, likely
-contract for the service and billing, legitimate interests for security,
-legal obligation for records, and consent for marketing.]**
+**Legal bases (for users in the EU, the EEA and the UK).** We rely on:
+- **contract:** providing the service, your account and billing;
+- **legitimate interests:** keeping the service secure, preventing abuse,
+  and keeping the audit and operational logs;
+- **legal obligation:** tax and accounting records, and answering lawful
+  requests;
+- **consent:** analytics cookies on our public websites, and the
+  waitlist. You can withdraw consent at any time.
 
 ## Who can see your memory
 
@@ -117,10 +135,8 @@ legal obligation for records, and consent for marketing.]**
   blocks staff from opening a customer's catalog unless they deliberately
   unlock it and give a reason. We do this only when you ask for help, or
   when we have to (for example to investigate abuse or to answer a lawful
-  request). Each unlock is written to the audit log, which you can see.
-  **[CONFIRM: before paid launch, turn on the email that tells you when a
-  catalog of yours is unlocked, then change this to say you're emailed
-  too.]**
+  request). Each unlock is written to the audit log, which you can see,
+  and we email you when it happens.
 - **Infrastructure access.** Today only the founder can reach the
   servers, the database and the hosting account. If we hire, anyone who
   runs the infrastructure will need an audited break-glass procedure to
@@ -146,13 +162,15 @@ Telekin, and only what each one needs:
 
 | Provider | What for | What they receive |
 |---|---|---|
-| Amazon Web Services | Hosting, the database, backups **[CONFIRM: and sending email through SES]** | Everything stored in Telekin, encrypted at rest |
+| Amazon Web Services | Hosting, the database, backups, operational logs (CloudWatch), sending email (Amazon SES) | Everything stored in Telekin, encrypted at rest |
 | Stripe | Payments, invoices, the customer portal | Billing details; your email |
 | Forminit | The waitlist form | Waitlist signups |
-| **[CONFIRM: email provider, if not SES]** | Sending account and billing emails | Your email address and the message |
-| **[CONFIRM: error or telemetry provider, if any]** | Keeping the service running | Operational data |
+| Google (Google Analytics) | Website analytics | Usage data from our public websites, including IP address and browser details |
+| Sentry | Error reports, traces and logs | Operational data, identified only by internal random IDs |
 
-**[CONFIRM: the AWS region where data is stored.]**
+Telekin's data is stored in the United States: in AWS's Ohio region
+(us-east-2), with a disaster-recovery copy in AWS's Oregon region
+(us-west-2).
 
 Beyond those providers, we disclose data only:
 - when the law requires it, and we'll tell you unless we're prohibited
@@ -188,17 +206,16 @@ without undue delay.
   - **for a shared team:** its catalogs and the team itself. Its members'
     own accounts aren't affected.
 - **Deleted catalogs go entirely,** including their history.
-- **The audit log is kept for [CONFIRM: production `audit_retention_days`,
-  default 400] days.** After an account is deleted, its entries stay, but
+- **The audit log is kept for 400 days**, including the IP addresses in it. After an account is deleted, its entries stay, but
   they no longer name you: they say "deleted user #N".
 - **The deletion record:** we keep a log that a team was deleted, and
   when, with no content and no email address.
-- **Billing records** are kept as long as tax and accounting law
-  requires, in Stripe and in our records. **[CONFIRM: period with the
-  accountant.]**
-- **Backups** are overwritten within **[CONFIRM: backup retention
-  period]**. Data deleted from the service disappears from backups by
-  then.
+- **Billing records** (invoices and payment history, in Stripe and in our
+  records) are kept for 7 years, as tax and accounting law requires, even
+  after your account is deleted.
+- **Backups** (including the disaster-recovery copy) expire after 14
+  days. Data deleted from the service is gone from every backup within 14
+  days of its deletion.
 - **Free or complimentary access** (for early testers, for example) works
   the same way when it ends: suspension, then 30 days, then deletion. The
   notice tells you how to reach us.
@@ -208,32 +225,35 @@ without undue delay.
 You can:
 - **see and change** your account details in the console;
 - **revoke** any app or key at any time;
-- **download** your catalogs (today by asking us; a self-serve export is
-  planned) **[CONFIRM: what's self-serve at launch]**;
+- **download** your catalogs yourself from the console, at any time,
+  including during the 30 days after a subscription ends;
 - **delete** a catalog, or your whole account, by asking us;
 - **object to or restrict** some uses, and **withdraw consent** where we
   rely on it;
 - **complain** to your local data protection authority.
 
 Depending on where you live (for example the EU, the UK or California),
-you may have further rights. We'll honour these requests wherever you
-live. **[CONFIRM with the lawyer: the GDPR, UK GDPR and CCPA/CPRA wording
-and response times; whether we need an EU or UK representative.]**
+you may have further rights. We honour these requests wherever you live.
+We answer within one month (45 days for California residents), and tell
+you if we need longer.
 
-To make a request, write to **[privacy contact]**. We may need to confirm
+To make a request, write to privacy@telekin.ai. We may need to confirm
 it's you before acting.
 
 ## Children
 
-Telekin isn't meant for children under **[CONFIRM: 13 / 16]**, and we
-don't knowingly collect their data. If you think a child has given us
+Telekin is for adults. You must be 18 or older to use it, and we don't
+knowingly collect data from anyone younger. If you think a child has given us
 data, contact us and we'll delete it.
 
 ## International transfers
 
-**[CONFIRM: where data is stored and processed, and the mechanism for
-transfers from the EU and UK (for example the EU-US Data Privacy
-Framework, or standard contractual clauses with our providers).]**
+Telekin stores and processes your data in the United States. If you use
+Telekin from outside the US, your data is transferred to the US because
+that's necessary to provide the service you asked for (for users in the
+EU, the EEA and the UK, Article 49(1)(b) of the GDPR). Our service
+providers protect any further transfers with the EU-US Data Privacy
+Framework or the European Commission's standard contractual clauses.
 
 ## Changes to this policy
 
@@ -242,8 +262,8 @@ significant change, we'll email account holders before it takes effect.
 
 ## Contact
 
-Hypotheosis **[CONFIRM: entity and address]**,
-**[privacy contact address]**.
+Hypotheosis LLC, 78 Glocker Way Suite #264, Pottstown, PA 19465,
+privacy@telekin.ai.
 
 ---
 
@@ -258,8 +278,9 @@ Facts this draft relies on, with where each comes from:
   deletion does.**
 - **Staff access:** the Telekin okf-mcp is set up with `require_unlock`.
   Unlocks need a reason and are recorded in the audit log. Team owners
-  read their team's audit entries in the console. The email on unlock is
-  planned for paid launch (founder, 2026-11-17).
+  read their team's audit entries in the console. The email on unlock will be
+  on before paid launch (founder, 2026-11-17); the policy can't go live
+  before it is.
 - **Encryption:** TLS to the service; TLS from the service to its
   database; the database encrypted at rest (founder, 2026-11-17). Today
   only the founder has access, and any future staff will use audited
@@ -273,14 +294,36 @@ Facts this draft relies on, with where each comes from:
   IDs, status, plan, suspension and deletion dates, invites, processed
   webhook IDs) and no catalog content. Emails are held only as Stripe and
   okf-mcp already hold them. The deletion log carries no email.
-- **Mail:** the platform's mailer supports SES and SMTP. Which one
-  production uses is still open.
+- **Mail:** production sends through Amazon SES (founder, 2026-11-17).
 - The docs page "Your data" already promises no training on customer data,
   encryption in transit and at rest, and that support reads catalogs only
   with permission. This draft is consistent with it. Check the docs page
   again when this is final.
 
-Questions for the lawyer:
+- **Analytics:** the founder will add Google Analytics (2026-11-17). Before
+  it goes on telekin.ai, update that site's privacy page, which says "no
+  cookies, no analytics", and add a consent banner for EU and UK visitors.
+  Consider IP anonymisation, and turning off Google signals and ad
+  features.
+
+- **EU and UK:** Telekin doesn't target the EU or UK (USD pricing,
+  English only, no EU or UK marketing) but accepts signups from there. So
+  no GDPR Article 27 representative is appointed for now. The founder will
+  appoint EU and UK representatives once revenue from those regions covers
+  the cost (founder, 2026-11-17). The rights section applies to everyone
+  regardless.
+- **Export:** self-serve from the console at launch (founder, 2026-11-17).
+  Update the docs page "Your data", which still says export is by request.
+
+- **Before it goes live:** production deletion is switched on
+  (`retention.delete_enabled`, P3 task #91); the email on unlock is on;
+  `audit_retention_days` is 400; Aurora backup retention is 14 days in both
+  regions; Sentry is set to send no default PII (`send_default_pii` off,
+  with IP addresses and request bodies scrubbed); and if Google Analytics
+  is added, there is a consent banner and an updated telekin.ai privacy
+  page. Also set the "Last updated" date.
+
+Questions for the lawyer (if it gets a review):
 1. Is "only through a recorded unlock" strong enough as worded, given
    that the service can technically read the data? We say plainly that it
    isn't end-to-end encryption. Is that enough?
