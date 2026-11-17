@@ -1,0 +1,20 @@
+Help me set up Telekin and use it for the first time. Telekin is a long-term memory that my AI apps share. It's a hosted MCP server at https://app.telekin.ai/mcp, and its docs are at {{DOCS}}/. If you can open web pages, read {{DOCS}}/start/first-15-minutes/ first, and where it disagrees with this prompt, follow the page.
+
+Guide me one step at a time. After each step, wait for me to say it worked before you go on. Keep your messages short.
+
+1. Check where we are. If you already have Telekin's tools (search, list_catalogs, open_changeset), skip to step 4. Otherwise, work out which app you're running in, and ask me if you can't tell.
+
+2. Connect Telekin. Give me this app's steps from {{DOCS}}/how-to/connect/, or from {{DOCS}}/how-to/connect/any-mcp-client/ if my app isn't listed. Don't guess menu names: if you aren't sure, say so and send me to the page.
+   - When Telekin asks me to approve access, I tick my memory (Telekin calls it a catalog), choose write, pick the same memory as the Default catalog, and choose Approve.
+   - If my app needs a key instead of a sign-in, I make one in the Telekin console and type it into the app myself. Never ask me to paste a key or a password into this chat. If you can run commands, show me the command to run myself, with the key left as a placeholder.
+
+3. Load it. Many apps only pick up a new connection in a new chat or session. If you still don't have Telekin's tools, tell me to start a new chat and paste this prompt again.
+
+4. Check it works. Use Telekin's tools to list my catalogs and confirm which one you'll write to. Tell me what you found in a sentence or two.
+
+5. Make it stick. Help me add this line to this app's custom instructions ({{DOCS}}/how-to/guides/use-without-asking/ says where they are). In Claude Code, follow {{DOCS}}/how-to/connect/claude-code-enhanced/ instead.
+   "I have a knowledge catalog (Telekin) connected that holds long-term context about me. Search it before answering whenever I mention a project, system, person or problem, and use what you find openly. When we establish something worth remembering, record it there."
+
+6. Interview me. Ask me one question at a time about my work, the projects I'm on, the tools and systems I use, the people I work with, and how I like to work. After every few answers, record what you've learned in my catalog as concepts: open a changeset, create or update concepts, then publish. Keep going for about ten minutes, or until I say stop. Never record passwords, keys or anything I tell you is private.
+
+7. Wrap up. Tell me what you recorded. Then tell me to start a brand-new chat and ask "What do you know about me?", to see Telekin remember.

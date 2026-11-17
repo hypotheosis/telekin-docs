@@ -1,0 +1,117 @@
+---
+// A "Try this with your agent" callout: a short intro (the slot), the prompt
+// shown in full, and a button that copies it. `{{DOCS}}` in the prompt
+// becomes the docs site's address, so the prompt's links follow SITE_URL.
+import { SITE_URL } from '../site-config.mjs';
+
+interface Props {
+  prompt: string;
+  title?: string;
+}
+const { prompt, title = 'Try this with your agent' } = Astro.props;
+const text = prompt.replaceAll('{{DOCS}}', SITE_URL.replace(/\/$/, '')).trim();
+---
+<aside class="agent-prompt not-content" aria-label={title}>
+  <div class="agent-prompt__head">
+    <p class="agent-prompt__title">
+      <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="4" y="8" width="16" height="11" rx="3" />
+        <path d="M12 4v4M9 13h.01M15 13h.01M10 16h4M2 12v3M22 12v3" />
+      </svg>
+      {title}
+    </p>
+    <button type="button" class="agent-prompt__copy" data-label="Copy prompt">Copy prompt</button>
+  </div>
+  <div class="agent-prompt__intro"><slot /></div>
+  <pre class="agent-prompt__text" tabindex="0">{text}</pre>
+  <p class="agent-prompt__status" role="status" aria-live="polite"></p>
+</aside>
+
+<style>
+  .agent-prompt {
+    margin-block: 1.5rem;
+    padding: 1.25rem 1.25rem 1rem;
+    border: 1px solid var(--sl-color-accent);
+    border-inline-start-width: 4px;
+    border-radius: 0.25rem;
+    background: var(--sl-color-accent-low);
+    color: var(--sl-color-white);
+  }
+  .agent-prompt__head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .agent-prompt__title {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin: 0;
+    font-size: var(--sl-text-h4);
+    font-weight: 600;
+    color: var(--sl-color-white);
+  }
+  .agent-prompt__title svg { color: var(--sl-color-accent-high); flex: none; }
+  .agent-prompt__copy {
+    padding: 0.4rem 0.9rem;
+    border: 1px solid var(--sl-color-accent-high);
+    border-radius: 0.25rem;
+    background: var(--sl-color-black);
+    color: var(--sl-color-accent-high);
+    font: inherit;
+    font-size: var(--sl-text-sm);
+    cursor: pointer;
+  }
+  .agent-prompt__copy:hover { background: var(--sl-color-accent-high); color: var(--sl-color-black); }
+  .agent-prompt__copy:focus-visible { outline: 2px solid var(--sl-color-accent-high); outline-offset: 2px; }
+  .agent-prompt__intro { margin-block: 0.75rem; }
+  .agent-prompt__intro :global(p) { margin: 0; }
+  .agent-prompt__text {
+    margin: 0;
+    max-height: 22rem;
+    overflow: auto;
+    padding: 1rem;
+    border: 1px solid var(--sl-color-gray-5);
+    border-radius: 0.25rem;
+    background: var(--sl-color-black);
+    color: var(--sl-color-gray-2);
+    font-family: var(--__sl-font-mono);
+    font-size: var(--sl-text-sm);
+    line-height: 1.6;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+  .agent-prompt__status { margin: 0.5rem 0 0; min-height: 1.2em; font-size: var(--sl-text-xs); color: var(--sl-color-gray-3); }
+</style>
+
+<script>
+  for (const box of document.querySelectorAll<HTMLElement>('.agent-prompt')) {
+    const button = box.querySelector<HTMLButtonElement>('.agent-prompt__copy');
+    const pre = box.querySelector<HTMLElement>('.agent-prompt__text');
+    const status = box.querySelector<HTMLElement>('.agent-prompt__status');
+    if (!button || !pre || !status) continue;
+    const label = button.dataset.label ?? 'Copy prompt';
+    button.addEventListener('click', async () => {
+      try {
+        await navigator.clipboard.writeText(pre.textContent ?? '');
+        button.textContent = 'Copied';
+        status.textContent = 'The prompt is on your clipboard.';
+        setTimeout(() => {
+          button.textContent = label;
+          status.textContent = '';
+        }, 2500);
+      } catch {
+        // No clipboard access (an insecure page, or permission refused):
+        // select the text so the reader can copy it by hand.
+        const range = document.createRange();
+        range.selectNodeContents(pre);
+        const selection = window.getSelection();
+        selection?.removeAllRanges();
+        selection?.addRange(range);
+        status.textContent = "Couldn't copy automatically. The prompt is selected: press Ctrl+C (or Cmd+C) to copy it.";
+      }
+    });
+  }
+</script>
