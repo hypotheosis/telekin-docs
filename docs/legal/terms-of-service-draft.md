@@ -2,11 +2,10 @@
 
 > **Draft, 2026-11-17. Not published.** This file is in the repository's
 > `docs/` folder, not in `src/content/`, so the docs site doesn't serve
-> it. Lines marked **[CONFIRM]** are facts or choices that still need
-> deciding. "Reviewer notes" at the end lists what must be true before it
-> goes live, and the questions for a lawyer if it gets a review. It goes
-> live together with the privacy policy
-> (`docs/legal/privacy-policy-draft.md`).
+> it. The founder confirmed every open choice on 2026-11-17. "Reviewer
+> notes" at the end lists what must be true before it goes live, and the
+> questions for a lawyer if it gets a review. It goes live together with
+> the privacy policy (`docs/legal/privacy-policy-draft.md`).
 
 **Last updated:** [date of publication]
 
@@ -71,9 +70,10 @@ these terms.
   to store it, and that storing it doesn't break the law or anyone else's
   rights. Don't store passwords, secret keys or other credentials, or
   data you're not allowed to share with a service like ours (for example,
-  data covered by a confidentiality agreement or by health or payment-card
-  rules). **[CONFIRM: is Telekin offered for regulated data such as health
-  information? This draft assumes not.]**
+  data covered by a confidentiality agreement). **Telekin isn't designed
+  for regulated data**, such as health records covered by HIPAA,
+  payment-card data, or government-issued ID numbers. Don't store it, and
+  we don't sign business associate agreements.
 - **AI-written content.** AI apps you connect can write to your catalogs.
   What they write may be wrong. Telekin keeps drafts, history and undo so
   you can check and correct it, but you're responsible for reviewing what
@@ -89,11 +89,14 @@ Don't use the Service to:
 - try to get into accounts, catalogs or systems you're not authorised to
   use, or to get around our security or usage limits;
 - overload or disrupt the Service, including through automated use well
-  beyond normal use of an AI memory **[CONFIRM: any published usage
-  limits, such as storage or request rates]**;
+  beyond normal use of an AI memory;
 - resell or offer the hosted Service to others as your own, without our
   written agreement. (Running the open-source software yourself is
   covered by its licence, not by this rule.)
+
+There are no fixed usage limits today. We may set reasonable limits
+later, such as on storage or request rates, and we'll tell you before
+they apply to you.
 
 If we reasonably believe your use breaks these rules, we may remove the
 content concerned, or suspend or close your account (see section 9).
@@ -103,8 +106,8 @@ content concerned, or suspend or close your account (see section 9).
 - **Plans.** The Service is offered on paid plans: a Personal plan, and
   Team plans for groups. The current prices and what each plan includes
   are shown on our website and at checkout. Team plans are set up with
-  us by hand. **[CONFIRM: does the policy promise a free tier? The
-  business plan mentions one; this draft assumes paid plans only.]**
+  us by hand. There is no free plan; new Personal plans start with the
+  free trial below.
 - **Free trial.** New Personal plans start with a **30-day free trial**,
   and a payment card is required to start it. Unless you cancel before
   the trial ends, your subscription starts automatically and your card is
@@ -115,19 +118,23 @@ content concerned, or suspend or close your account (see section 9).
 - **Payments.** Payments are handled by Stripe. We never see your full
   card details. You authorise us, through Stripe, to charge your payment
   method for your subscription and any applicable taxes.
-- **Taxes.** Prices **[CONFIRM: include / exclude]** sales tax, VAT and
-  similar taxes. Where we have to collect tax, it's added at checkout.
+- **Taxes.** Prices exclude sales tax, VAT and similar taxes. Where we
+  have to collect tax, it's added at checkout and shown before you pay.
 - **Failed payments.** If a payment fails, Stripe retries it for a
   period. Your Service keeps working while it retries. If the final
   retry fails, the subscription ends and your team is suspended, as
   described in section 8.
 - **Price changes.** We may change prices. We'll tell you at least
-  **[CONFIRM: 30]** days before a change applies to you. A new price
+  30 days before a change applies to you. A new price
   applies from your next renewal after that notice, and you can cancel
   before it does.
-- **Refunds.** **[CONFIRM: refund policy. A common choice: fees already
-  paid aren't refundable, except where the law requires a refund or we
-  decide otherwise, and cancelling stops future charges.]**
+- **Refunds.** If you're charged for a **yearly** plan, you can ask for a
+  full refund of that charge within **14 days** of it, by writing to us.
+  Your subscription then ends, and the rules in section 8 apply.
+  Otherwise, fees already paid aren't refundable, including for part of a
+  period, except where the law requires a refund or we decide to make one.
+  Cancelling stops future charges, and your plan keeps working until the
+  end of the period you've paid for.
 - **Complimentary access.** We may give some people or teams free access
   (early testers, for example) for a set period. When it ends, the same
   suspension and deletion rules apply (section 8), unless you subscribe.
@@ -135,9 +142,11 @@ content concerned, or suspend or close your account (see section 9).
 ## 7. Cancelling
 
 You can cancel at any time from the billing page, which opens Stripe's
-customer portal. **[CONFIRM: does cancelling take effect at the end of
-the current paid period (the usual default), or at once?]** After that,
-your team is suspended and the retention rules in section 8 apply.
+customer portal. Cancelling takes effect at the **end of your current paid
+period** (or, during the trial, at the end of the trial), and you won't be
+charged again. Until then the Service keeps working as normal. After it,
+your team is suspended and the retention rules in section 8 apply. You can
+undo a cancellation in the portal before it takes effect.
 
 ## 8. Suspension, retention and deletion
 
@@ -165,17 +174,18 @@ We may suspend or close your account, or remove content, if:
 - your use puts the Service, other users or us at risk.
 
 Where it's reasonable and lawful, we'll tell you first and give you a
-chance to fix the problem and to download your data. If we close an
-account for reasons other than a breach of these terms, we'll refund any
-prepaid fees for the unused period. **[CONFIRM: can we also close the
-Service, or an account, for convenience, with notice? If so, how much
-notice, for example 30 days?]**
+chance to fix the problem and to download your data.
+
+We may also close your account, or shut down the Service altogether, for
+any other reason. If we do, we'll give you at least **30 days' notice**,
+time to download your data, and a prorated refund of any prepaid fees for
+the unused part of your period.
 
 ## 10. Availability and changes to the Service
 
 - We work to keep the Service available and your data safe, but we don't
   promise it will be uninterrupted or error-free, and we don't offer a
-  service-level agreement. **[CONFIRM: no SLA, including for team plans.]**
+  service-level agreement or service credits, on any plan.
 - We back up your data as described in the privacy policy. Keep your own
   copy of anything you can't afford to lose: you can download your
   catalogs at any time.
@@ -213,30 +223,30 @@ To the fullest extent the law allows:
   or punitive damages, or for lost profits, revenue, data or goodwill,
   even if we were told they were possible;
 - our total liability for all claims relating to the Service is limited
-  to **[CONFIRM: the greater of the amount you paid us in the 12 months
-  before the claim, and US$100]**.
+  to the greater of **the amount you paid us in the 12 months before the
+  claim** and **US$100**.
 
 Some places don't allow these limits, so they may not all apply to you.
 
 ## 15. Indemnity
 
-You'll defend and compensate us against claims, losses and costs
-(including reasonable legal fees) that arise from your content, or from
-your breaking these terms or the law, except to the extent they're
-caused by us. **[CONFIRM: keep an indemnity for consumers? Many consumer
-services limit it to business customers.]**
+This section applies only if you use the Service for a business,
+including as the owner of a team plan for an organisation. If you do,
+you'll defend and compensate us against claims by third parties, and the
+resulting losses and costs (including reasonable legal fees), that arise
+from your content, or from your or your team's breaking these terms or
+the law, except to the extent they're caused by us.
 
 ## 16. Disputes and governing law
 
 - **Talk to us first.** If you have a problem, write to us and give us
   30 days to try to resolve it informally.
 - **Governing law.** These terms are governed by the laws of
-  **[CONFIRM: the State of Delaware / the Commonwealth of
-  Pennsylvania]**, without regard to its conflict-of-laws rules.
-- **Where disputes go.** **[CONFIRM: either (a) the state and federal
-  courts in a named county, or (b) binding individual arbitration
-  (for example under the AAA's consumer rules), with a small-claims
-  exception and a class-action waiver.]**
+  the State of Delaware, without regard to its conflict-of-laws rules.
+- **Where disputes go.** Any dispute that isn't resolved informally goes
+  to the state or federal courts in New Castle County, Delaware, and you
+  and we agree to their jurisdiction. Either of us may instead bring a
+  claim in a small-claims court where it qualifies.
 - If you live in a country whose law gives you rights these terms can't
   take away, nothing here limits those rights.
 
@@ -244,7 +254,8 @@ services limit it to business customers.]**
 
 We may update these terms. We'll post the new version with a new "Last
 updated" date. For a significant change, we'll email account holders at
-least **[CONFIRM: 30]** days before it takes effect. If you keep using the
+least 30 days before it takes effect. Small changes, such as
+corrections and clarifications, are just posted with a new date. If you keep using the
 Service after that, the new terms apply. If you don't agree, you can
 cancel before they take effect.
 
@@ -261,8 +272,7 @@ cancel before they take effect.
 - Neither of us is liable for delays caused by events beyond reasonable
   control.
 - We send notices to your account's email address. You can send notices
-  to us at **[CONFIRM: legal/support contact, for example
-  support@telekin.ai]**, or by mail to the address at the top.
+  to us at legal@telekin.ai, or by mail to the address at the top.
 
 ---
 
@@ -294,11 +304,16 @@ Before it goes live:
   (cancellation timing in the customer portal);
 - the signup page links to these terms and the privacy policy, and
   records that the user agreed;
+- Stripe: the customer portal cancels at the end of the billing period
+  and lets a cancellation be undone; refunding a yearly charge within 14
+  days also cancels the subscription;
+- the mailboxes legal@telekin.ai and privacy@telekin.ai exist and are read;
 - set the "Last updated" date.
 
 Questions for a lawyer (if it gets a review):
-1. Arbitration and a class-action waiver, versus courts: enforceability
-   for consumers, and the cost to us.
+1. Courts in New Castle County, chosen over arbitration (founder,
+   2026-11-17): is a forum clause enforceable against consumers in other
+   states, and should the terms say more about class actions?
 2. Automatic-renewal laws (for example California's), and whether the
    checkout's disclosure and the trial-ending reminder satisfy them.
 3. The liability cap and the indemnity, for consumers versus businesses.
