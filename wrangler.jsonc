@@ -6,8 +6,8 @@
     "directory": "./dist",
     "not_found_handling": "404-page"
   },
-  // Serve each uploaded version at <version>-telekin-docs.<subdomain>.workers.dev,
-  // so Workers Builds can post a preview link on pull requests. Without this,
-  // every deploy from main switches Preview URLs off (the default is false).
-  "preview_urls": true
+  // Workers Builds runs `wrangler preview` for non-production branches, and that
+  // command needs this block to exist. It can stay empty: this site has no
+  // bindings or vars, and assets stay at the top level.
+  "previews": {}
 }
