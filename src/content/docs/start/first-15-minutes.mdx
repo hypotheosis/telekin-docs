@@ -7,6 +7,8 @@ sidebar:
 
 import { Steps } from '@astrojs/starlight/components';
 import Waitlist from '../../../components/Waitlist.astro';
+import AgentPrompt from '../../../components/AgentPrompt.astro';
+import firstSetup from '../../../prompts/first-setup.txt?raw';
 
 This walks you through the core Telekin workflow. Your AI will have written down what it learned about you and your work, and a brand-new chat will be able to pick up that info all on its own.
 
@@ -15,6 +17,10 @@ This walks you through the core Telekin workflow. Your AI will have written down
 You'll need a Telekin account. You should have gotten an invite email with a signup link. [Set up your account](/start/set-up-your-account/) walks you through initial signup.
 
 <Waitlist />
+
+<AgentPrompt prompt={firstSetup}>
+Short on time? Once you have your account, start a new chat with your AI and give it this prompt. It walks you through connecting Telekin, checks the connection, and runs the interview, one step at a time.
+</AgentPrompt>
 
 This page uses Claude on the web (claude.ai) because it doesn't need a terminal. If you use something else, pick it from [Connect your AI](/how-to/connect/) and come back for the later steps.
 
