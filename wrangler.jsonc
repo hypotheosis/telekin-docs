@@ -5,5 +5,9 @@
   "assets": {
     "directory": "./dist",
     "not_found_handling": "404-page"
-  }
+  },
+  // Serve each uploaded version at <version>-telekin-docs.<subdomain>.workers.dev,
+  // so Workers Builds can post a preview link on pull requests. Without this,
+  // every deploy from main switches Preview URLs off (the default is false).
+  "preview_urls": true
 }
