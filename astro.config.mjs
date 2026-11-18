@@ -4,7 +4,7 @@ import { fileURLToPath } from 'node:url';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import starlightLinksValidator from 'starlight-links-validator';
-import { SITE_URL, WAITLIST_URL } from './src/site-config.mjs';
+import { FEEDBACK_URL, SITE_URL, WAITLIST_URL } from './src/site-config.mjs';
 import { walk } from './scripts/lib.mjs';
 
 // NO SITEMAP until launch. Starlight adds @astrojs/sitemap itself unless an
@@ -64,6 +64,7 @@ export default defineConfig({
         { label: 'Explanation', items: [{ autogenerate: { directory: 'explanation' } }] },
         { label: 'FAQ', link: '/faq/' },
         ...(hasTesters ? [{ label: 'For testers', items: [{ autogenerate: { directory: 'testers' } }] }] : []),
+        { label: 'Send feedback', link: FEEDBACK_URL },
         { label: 'Join the waitlist', link: WAITLIST_URL },
       ],
     }),

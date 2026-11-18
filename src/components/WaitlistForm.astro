@@ -1,7 +1,13 @@
 ---
+import { WAITLIST_FORM_ID } from '../site-config.mjs';
 const tools = ['Claude', 'ChatGPT', 'Claude Code', 'Cursor', 'VS Code', 'Other'];
 ---
-<form data-forminit method="post">
+<form
+  data-forminit
+  data-form-id={WAITLIST_FORM_ID}
+  data-thanks="Thanks! You're on the list. We'll email you when there's a spot."
+  method="post"
+>
   <p>
     <label for="wl-email">Email</label><br />
     <input id="wl-email" type="email" name="fi-sender-email" required autocomplete="email" />
@@ -29,68 +35,5 @@ const tools = ['Claude', 'ChatGPT', 'Claude Code', 'Cursor', 'VS Code', 'Other']
 </form>
 
 <script>
-  import { Forminit } from "forminit";
-
-  // Forminit form: inputs are named fi-{type}-{name}. Rules: https://forminit.com/setup.md
-  const FORM_ID = "r31ac40c2ux";
-  // One message per field Forminit validates, in the page's language. Keys are Forminit's
-  // field names: sender.<name> for fi-sender-*, else the {name} of fi-{type}-{name}.
-  const FIELD_ERRORS: Record<string, string> = {
-    "sender.fullName": "Please use only letters, spaces, hyphens, apostrophes and periods.",
-    "sender.email": "Please enter a valid email address.",
-  };
-  // Forminit names the failing field in error.fieldName or, today, as the first quoted word of error.message
-  function errorText(error?: { error?: string; fieldName?: string; message?: string }): string {
-    const field = error?.fieldName ?? /['"]([^'"]+)['"]/.exec(error?.message ?? "")?.[1];
-    if (field && FIELD_ERRORS[field]) return FIELD_ERRORS[field];
-    if (error?.error === "TOO_MANY_REQUESTS") return "Please wait a few seconds and try again.";
-    return "Something went wrong. Please try again.";
-  }
-  const forminit = new Forminit();
-
-  function bind(form: HTMLFormElement) {
-    if (form.dataset.forminitBound) return; // already bound
-    form.dataset.forminitBound = "true";
-    const buttons = form.querySelectorAll<HTMLButtonElement | HTMLInputElement>(
-      'button[type="submit"], button:not([type]), input[type="submit"]'
-    );
-    const status = form.querySelector<HTMLElement>("[data-form-status]")!;
-    let sending = false;
-
-    form.addEventListener("submit", async (event) => {
-      event.preventDefault();
-      if (sending) return;
-      const fd = new FormData(form); // before anything is disabled
-      for (const k of ["fi-sender-fullName", "fi-sender-firstName", "fi-sender-lastName"]) {
-        const v = fd.get(k);
-        if (typeof v === "string") fd.set(k, v.replace(/[‘’]/g, "'"));
-      }
-      status.textContent = "";
-      sending = true;
-      buttons.forEach((b) => (b.disabled = true));
-      try {
-        const { data, error } = await forminit.submit(FORM_ID, fd);
-        if (error || typeof data?.hashId !== "string") {
-          console.error("Forminit:", error ?? data);
-          status.textContent = errorText(error);
-          return;
-        }
-        // Success: replace the form's contents with a thank-you message.
-        const thanks = document.createElement("p");
-        thanks.setAttribute("role", "status");
-        thanks.textContent = "Thanks! You're on the list. We'll email you when there's a spot.";
-        form.replaceChildren(thanks);
-      } catch (err) {
-        console.error("Forminit:", err);
-        status.textContent = "Something went wrong. Please try again.";
-      } finally {
-        sending = false;
-        buttons.forEach((b) => (b.disabled = false));
-      }
-    });
-  }
-
-  const bindAll = () => document.querySelectorAll<HTMLFormElement>("form[data-forminit]").forEach(bind);
-  bindAll();
-  document.addEventListener("astro:page-load", bindAll);
+  import "../scripts/forminit-forms.ts";
 </script>

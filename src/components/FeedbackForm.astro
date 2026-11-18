@@ -1,0 +1,59 @@
+---
+import { CONTACT_URL, FEEDBACK_FORM_ID } from '../site-config.mjs';
+const kinds = ["Something's broken", "Something's confusing", 'An idea', 'Something I like'];
+const tools = ['Claude', 'ChatGPT', 'Claude Code', 'Cursor', 'VS Code', 'Other'];
+---
+{FEEDBACK_FORM_ID ? (
+  <form
+    data-forminit
+    data-form-id={FEEDBACK_FORM_ID}
+    data-thanks="Thanks! We read every one of these."
+    method="post"
+  >
+    <fieldset>
+      <legend>What's this about?</legend>
+      {kinds.map((kind, i) => (
+        <label style="display: block;">
+          <input type="radio" name="fi-select-kind" value={kind} required={i === 0} /> {kind}
+        </label>
+      ))}
+    </fieldset>
+    <p>
+      <label for="fb-message">Tell us more</label><br />
+      <textarea id="fb-message" name="fi-text-message" rows="6" required style="width: 100%; max-width: 32rem;"></textarea><br />
+      <small>What were you trying to do, and what happened? Leave keys and private material out.</small>
+    </p>
+    <p>
+      <label for="fb-tool">Which AI were you using? (optional)</label><br />
+      <select id="fb-tool" name="fi-select-tool">
+        <option value="">Choose one</option>
+        {tools.map((tool) => <option value={tool}>{tool}</option>)}
+      </select>
+    </p>
+    <p>
+      <label for="fb-email">Email (optional, if you'd like a reply)</label><br />
+      <input id="fb-email" type="email" name="fi-sender-email" autocomplete="email" />
+    </p>
+    <input type="hidden" name="fi-text-from" data-feedback-from />
+    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display: none;" aria-hidden="true" />
+    <p><button type="submit">Send feedback</button></p>
+    <p data-form-status role="status"></p>
+  </form>
+) : (
+  <p>
+    The feedback form isn't open yet. Until it is, <a href={CONTACT_URL}>email us</a>; we read everything.
+  </p>
+)}
+
+<script>
+  import "../scripts/forminit-forms.ts";
+
+  // Records where the person came from: ?from=... when a link sets it, else the referring page.
+  function fillFrom() {
+    const input = document.querySelector<HTMLInputElement>("[data-feedback-from]");
+    if (!input || input.value) return;
+    input.value = new URLSearchParams(location.search).get("from") ?? document.referrer ?? "";
+  }
+  fillFrom();
+  document.addEventListener("astro:page-load", fillFrom);
+</script>

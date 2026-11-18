@@ -1,6 +1,16 @@
-// The one place to change the site URL and the waitlist link.
+// The one place to change the site URL, the waitlist and feedback links, and the form ids.
 // The founder sets the real values at deploy time (see Task 19).
 export const SITE_URL = 'https://docs.telekin.ai';
 export const WAITLIST_URL = '/waitlist/';
 // Where "ask us" links go. Change this when there is a support address.
 export const CONTACT_URL = 'mailto:hello@hypotheosis.ai';
+// Where "send feedback" links go (the docs sidebar, and the console's
+// feedback_url setting points here too).
+export const FEEDBACK_URL = '/feedback/';
+// Forminit form ids. Each form is its own Forminit form with its own inbox;
+// the waitlist and feedback never share one.
+export const WAITLIST_FORM_ID = 'r31ac40c2ux';
+// Empty until the feedback form exists in Forminit (it needs the Pro plan:
+// the free plan allows one form, which the waitlist uses). While empty, the
+// feedback page asks people to email CONTACT_URL instead.
+export const FEEDBACK_FORM_ID = '';
