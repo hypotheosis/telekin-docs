@@ -10,7 +10,6 @@ export const FEEDBACK_URL = '/feedback/';
 // Forminit form ids. Each form is its own Forminit form with its own inbox;
 // the waitlist and feedback never share one.
 export const WAITLIST_FORM_ID = 'r31ac40c2ux';
-// Empty until the feedback form exists in Forminit (it needs the Pro plan:
-// the free plan allows one form, which the waitlist uses). While empty, the
-// feedback page asks people to email CONTACT_URL instead.
-export const FEEDBACK_FORM_ID = '';
+// The feedback form needs Forminit's Pro plan (the free plan allows one form).
+// If this is ever emptied, the feedback page asks people to email CONTACT_URL.
+export const FEEDBACK_FORM_ID = '3ic9pigxmcr';
