@@ -1,0 +1,36 @@
+---
+// Replaces Starlight's SocialIcons slot in the top nav (and the mobile menu footer)
+// to add a "Send feedback" button, then renders the default social icons after it.
+import Default from '@astrojs/starlight/components/SocialIcons.astro';
+import { FEEDBACK_URL } from '../site-config.mjs';
+const here = Astro.url.pathname.replace(/\/?$/, '/') === FEEDBACK_URL;
+---
+<a class="feedback-link" href={FEEDBACK_URL} aria-current={here ? 'page' : undefined}>
+  <svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+  </svg>
+  Send feedback
+</a>
+<Default />
+
+<style>
+  .feedback-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    font-size: var(--sl-text-sm);
+    font-weight: 600;
+    text-decoration: none;
+    color: var(--sl-color-text-accent);
+    border: 1px solid var(--sl-color-text-accent);
+    border-radius: 999px;
+    padding: 0.35rem 0.8rem;
+    transition: background 0.15s, color 0.15s;
+  }
+  .feedback-link:hover,
+  .feedback-link[aria-current='page'] {
+    color: var(--sl-color-black);
+    background: var(--sl-color-text-accent);
+  }
+</style>

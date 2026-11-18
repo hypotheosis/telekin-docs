@@ -37,6 +37,7 @@ export default defineConfig({
       description: 'A memory your AIs share, and you own.',
       plugins: [starlightLinksValidator()],
       customCss: ['./src/styles/forms.css'],
+      components: { SocialIcons: './src/components/HeaderLinks.astro' },
       head: [
         { tag: 'meta', attrs: { name: 'robots', content: 'noindex, nofollow' } },
       ],
