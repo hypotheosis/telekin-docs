@@ -5,6 +5,7 @@ const tools = ['Claude', 'ChatGPT', 'Claude Code', 'Cursor', 'VS Code', 'Other']
 ---
 {FEEDBACK_FORM_ID ? (
   <form
+    class="tk-form"
     data-forminit
     data-form-id={FEEDBACK_FORM_ID}
     data-thanks="Thanks! We read every one of these."
@@ -12,31 +13,35 @@ const tools = ['Claude', 'ChatGPT', 'Claude Code', 'Cursor', 'VS Code', 'Other']
   >
     <fieldset>
       <legend>What's this about?</legend>
-      {kinds.map((kind, i) => (
-        <label style="display: block;">
-          <input type="radio" name="fi-select-kind" value={kind} required={i === 0} /> {kind}
-        </label>
-      ))}
+      <div class="tk-choices">
+        {kinds.map((kind, i) => (
+          <label class="tk-choice">
+            <input type="radio" name="fi-select-kind" value={kind} required={i === 0} /> {kind}
+          </label>
+        ))}
+      </div>
     </fieldset>
-    <p>
-      <label for="fb-message">Tell us more</label><br />
-      <textarea id="fb-message" name="fi-text-message" rows="6" required style="width: 100%; max-width: 32rem;"></textarea><br />
-      <small>What were you trying to do, and what happened? Leave keys and private material out.</small>
-    </p>
-    <p>
-      <label for="fb-tool">Which AI were you using? (optional)</label><br />
+    <div class="tk-field">
+      <label for="fb-message">Tell us more</label>
+      <textarea id="fb-message" name="fi-text-message" rows="6" required aria-describedby="fb-message-hint"></textarea>
+      <span id="fb-message-hint" class="tk-hint">What were you trying to do, and what happened? Leave keys and private material out.</span>
+    </div>
+    <div class="tk-field">
+      <label for="fb-tool">Which AI were you using? <span class="tk-optional">(optional)</span></label>
       <select id="fb-tool" name="fi-select-tool">
         <option value="">Choose one</option>
         {tools.map((tool) => <option value={tool}>{tool}</option>)}
       </select>
-    </p>
-    <p>
-      <label for="fb-email">Email (optional, if you'd like a reply)</label><br />
+    </div>
+    <div class="tk-field">
+      <label for="fb-email">Email <span class="tk-optional">(optional, if you'd like a reply)</span></label>
       <input id="fb-email" type="email" name="fi-sender-email" autocomplete="email" />
-    </p>
+    </div>
     <input type="hidden" name="fi-text-from" data-feedback-from />
-    <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display: none;" aria-hidden="true" />
-    <p><button type="submit">Send feedback</button></p>
+    <input class="tk-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+    <div class="tk-actions">
+      <button type="submit">Send feedback</button>
+    </div>
     <p data-form-status role="status"></p>
   </form>
 ) : (

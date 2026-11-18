@@ -36,6 +36,7 @@ export default defineConfig({
       title: 'Telekin',
       description: 'A memory your AIs share, and you own.',
       plugins: [starlightLinksValidator()],
+      customCss: ['./src/styles/forms.css'],
       head: [
         { tag: 'meta', attrs: { name: 'robots', content: 'noindex, nofollow' } },
       ],

@@ -3,34 +3,39 @@ import { WAITLIST_FORM_ID } from '../site-config.mjs';
 const tools = ['Claude', 'ChatGPT', 'Claude Code', 'Cursor', 'VS Code', 'Other'];
 ---
 <form
+  class="tk-form"
   data-forminit
   data-form-id={WAITLIST_FORM_ID}
   data-thanks="Thanks! You're on the list. We'll email you when there's a spot."
   method="post"
 >
-  <p>
-    <label for="wl-email">Email</label><br />
+  <div class="tk-field">
+    <label for="wl-email">Email</label>
     <input id="wl-email" type="email" name="fi-sender-email" required autocomplete="email" />
-  </p>
-  <p>
-    <label for="wl-name">Name</label><br />
+  </div>
+  <div class="tk-field">
+    <label for="wl-name">Name <span class="tk-optional">(optional)</span></label>
     <input id="wl-name" type="text" name="fi-sender-fullName" autocomplete="name" />
-  </p>
+  </div>
   <fieldset>
     <legend>Which AI tools do you use?</legend>
-    {tools.map((tool) => (
-      <label style="display: block;">
-        <input type="checkbox" name="fi-checkbox-tools[]" value={tool} /> {tool}
-      </label>
-    ))}
+    <div class="tk-choices">
+      {tools.map((tool) => (
+        <label class="tk-choice">
+          <input type="checkbox" name="fi-checkbox-tools[]" value={tool} /> {tool}
+        </label>
+      ))}
+    </div>
   </fieldset>
-  <p>
-    <label for="wl-hopes">What would you want your AI to remember about you?</label><br />
-    <textarea id="wl-hopes" name="fi-text-hopes" rows="4" style="width: 100%; max-width: 32rem;"></textarea>
-  </p>
-  <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" style="display: none;" aria-hidden="true" />
-  <p><button type="submit">Join the waitlist</button></p>
-  <p><small>We'll only use your email to tell you when there's a spot.</small></p>
+  <div class="tk-field">
+    <label for="wl-hopes">What would you want your AI to remember about you? <span class="tk-optional">(optional)</span></label>
+    <textarea id="wl-hopes" name="fi-text-hopes" rows="4"></textarea>
+  </div>
+  <input class="tk-honeypot" type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" />
+  <div class="tk-actions">
+    <button type="submit">Join the waitlist</button>
+    <span class="tk-hint">We'll only use your email to tell you when there's a spot.</span>
+  </div>
   <p data-form-status role="status"></p>
 </form>
 
