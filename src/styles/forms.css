@@ -1,0 +1,164 @@
+/* Forms (waitlist, feedback). Built on Starlight's theme variables so they follow light and dark mode. */
+
+.tk-form {
+  display: grid;
+  gap: 1.25rem;
+  max-width: 34rem;
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  border: 1px solid var(--sl-color-gray-5);
+  border-radius: 0.75rem;
+  background: var(--sl-color-bg-nav);
+}
+
+/* Starlight spaces every child of the content area; the grid gap does that here. */
+.sl-markdown-content .tk-form * {
+  margin: 0;
+}
+
+.tk-field {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.tk-form fieldset {
+  display: grid;
+  gap: 0.5rem;
+  border: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+.tk-form label,
+.tk-form legend {
+  font-weight: 600;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-white);
+  padding: 0;
+}
+
+.tk-optional {
+  font-weight: 400;
+  color: var(--sl-color-gray-3);
+}
+
+.tk-hint {
+  font-size: var(--sl-text-xs);
+  color: var(--sl-color-gray-3);
+}
+
+.tk-form input[type='email'],
+.tk-form input[type='text'],
+.tk-form select,
+.tk-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  font: inherit;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-white);
+  background: var(--sl-color-bg);
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.75rem;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.tk-form textarea {
+  resize: vertical;
+  min-height: 8rem;
+}
+
+.tk-form input:focus-visible,
+.tk-form select:focus-visible,
+.tk-form textarea:focus-visible {
+  outline: none;
+  border-color: var(--sl-color-accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sl-color-accent) 30%, transparent);
+}
+
+/* Choices (radio and checkbox) as selectable chips. */
+.tk-choices {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.tk-form .tk-choice {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-weight: 400;
+  padding: 0.45rem 0.85rem;
+  border: 1px solid var(--sl-color-gray-4);
+  border-radius: 999px;
+  background: var(--sl-color-bg);
+  cursor: pointer;
+  transition: border-color 0.15s, background 0.15s;
+}
+
+.tk-choice:hover {
+  border-color: var(--sl-color-accent);
+}
+
+.tk-choice input {
+  accent-color: var(--sl-color-accent);
+  margin: 0;
+}
+
+.tk-choice:has(input:checked) {
+  border-color: var(--sl-color-accent);
+  background: color-mix(in srgb, var(--sl-color-accent) 15%, var(--sl-color-bg));
+}
+
+.tk-choice:has(input:focus-visible) {
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--sl-color-accent) 30%, transparent);
+}
+
+.tk-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem 1rem;
+}
+
+.tk-form button[type='submit'] {
+  font: inherit;
+  font-weight: 600;
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-black);
+  background: var(--sl-color-text-accent);
+  border: 0;
+  border-radius: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  cursor: pointer;
+  transition: filter 0.15s;
+}
+
+.tk-form button[type='submit']:hover {
+  filter: brightness(1.1);
+}
+
+.tk-form button[type='submit']:disabled {
+  opacity: 0.6;
+  cursor: progress;
+}
+
+.tk-form [data-form-status]:empty {
+  display: none;
+}
+
+.tk-form [data-form-status] {
+  font-size: var(--sl-text-sm);
+  color: var(--sl-color-red-high, #e5484d);
+}
+
+/* After a successful send the form holds only the thank-you message. */
+.tk-form > p[role='status']:only-child {
+  font-weight: 600;
+  color: var(--sl-color-white);
+}
+
+.tk-honeypot {
+  display: none;
+}
