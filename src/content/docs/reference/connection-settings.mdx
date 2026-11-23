@@ -1,45 +1,54 @@
 ---
 title: Connection settings
-description: The settings any AI app needs to connect to Telekin, and how Telekin picks which catalog to use.
+description: The settings any AI app needs to connect to Telekin, how sign-in and keys work, and how Telekin picks which catalog to use.
 sidebar:
   order: 1
 ---
 
-Every app that connects to Telekin needs the same few settings, whatever it calls them. The server URL is `https://app.telekin.ai/mcp`. Developer tools send a key you make on **My keys** ([Make a key](/how-to/guides/make-a-key/)); Claude on the web and desktop, ChatGPT, and Cursor through its one-click install sign in in your browser with your Telekin account instead. Telekin accepts both ways at the same URL.
+Every app that connects to Telekin needs the same few settings, whatever it calls them. Telekin accepts two ways in, side by side, at the same URL: **OAuth sign-in**, where you sign in with your Telekin account in your browser, and **a key** you make on **My keys** ([Make a key](/how-to/guides/make-a-key/)). Use OAuth whenever the app supports it; almost every app now does.
 
 | Setting | Value | Required |
 |---|---|---|
-| URL | `<server URL>`, which ends in `/mcp` | Yes |
+| URL | `https://app.telekin.ai/mcp` | Yes |
 | Transport | Streamable HTTP (some apps just call it "HTTP") | Yes |
-| `Authorization` header | `Bearer <your key>`: the word `Bearer`, a space, then your key | Yes |
+| Authentication | OAuth, or a key in the `Authorization` header | One of the two |
 | `X-OKF-Catalogs` header | One or more catalog names, separated by commas, such as `t01`. Plural: `Catalogs`, not `Catalog` | No. Usually unnecessary |
-| `?catalogs=` query parameter | The same catalog names, added to the end of the URL, such as `<server URL>?catalogs=t01` | No. An alternative to the header |
+| `?catalogs=` query parameter | The same catalog names, added to the end of the URL, such as `https://app.telekin.ai/mcp?catalogs=t01` | No. An alternative to the header |
 
 ## OAuth sign-in
 
-Claude on the web and desktop, and ChatGPT, sign in with OAuth: you sign in with your Telekin account in your browser and approve the connection, instead of sending a key in a header.
+| Setting | Value |
+|---|---|
+| Authentication | OAuth. Leave any client ID and client secret empty: apps register themselves |
+| Signing in | Your Telekin account (email and password, or a passkey), on Telekin's page in your browser |
+| Approving | **Allow access?** says what **Approve** grants. With one catalog, that's `write` on it (or `read`, if that's all your account has), as the default catalog. With several, choose under **Advanced Options**: tick the catalogs, choose `read` or `write` for each, pick a default catalog |
+| Sign-in time limit | Finish within 10 minutes of the page opening |
+| Staying connected | The app renews its access by itself. A connection unused for 30 days is disconnected, and you sign in again |
+| Revoking | **My grants** in your Telekin console, which also shows when each connection was last active |
+
+Each app you connect is approved separately, and reconnecting after a disconnect means approving again. An app that ran several sessions at once (Claude Code with parallel sessions, for example) stays signed in; you don't have to sign in again for each.
+
+## A key
 
 | Setting | Value |
 |---|---|
-| URL | `<server URL>`, which ends in `/mcp` (the same as with a key) |
-| Authentication | OAuth. Leave any client ID and client secret empty |
-| Signing in | Your Telekin account (email and password, or a passkey), on Telekin's page in your browser |
-| Approving | On **Allow access?**, tick the catalogs the app may use, choose `read` or `write` for each, pick a default catalog, then **Approve** |
-| Sign-in time limit | Finish within 10 minutes of the page opening |
-| Revoking | **My grants** in your Telekin console |
+| `Authorization` header | `Bearer <your key>`: the word `Bearer`, a space, then your key |
 
-Each app you connect is approved separately, and reconnecting after a disconnect means approving again. A connected app stays connected as long as it's used regularly. The `Authorization` header above applies to keys; with OAuth, the catalogs you approve decide what the app reaches.
+A key reaches the catalogs you ticked when you made it, at the level you chose, until it expires or you revoke it on **My keys**. Some apps stop offering OAuth sign-in when an `Authorization` header is set, so use one or the other.
 
 ## Which catalog Telekin uses
 
-A catalog is one collection of your notes. Most people have exactly one, and the key or connection they made already points at it as its default catalog, so they never set a catalog at all.
+A catalog is one collection of your notes. Most people have exactly one, and Telekin uses it without being told.
 
 If you can reach more than one, Telekin picks in this order and stops at the first that names a catalog:
 
 1. The `X-OKF-Catalogs` header.
 2. The `?catalogs=` query parameter.
 3. The default catalog you chose when you made your key or approved the connection.
+4. The only catalog the key or connection reaches, if it reaches exactly one.
 
 A misspelled header name is silently ignored, so if the wrong catalog is used, check the spelling first. Catalog names are case-sensitive: `T01` does not match `t01`.
+
+Catalogs also have a display name, shown beside their name on Telekin's pages and in what your AI sees. Settings and tool calls always use the name, such as `t01`, not the display name. To see which catalogs a connection reaches, ask your AI to run `whoami` or `list_catalogs`.
 
 Setup steps for each app are under [Connect your AI](/how-to/connect/). If something won't connect, see [Troubleshoot](/how-to/guides/troubleshoot/).

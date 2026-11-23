@@ -1,6 +1,6 @@
 ---
 title: Connect Claude Code
-description: Add Telekin to Claude Code with one command.
+description: Add Telekin to Claude Code with one command and sign in in your browser.
 sidebar:
   order: 2
 ---
@@ -9,43 +9,60 @@ import { Steps } from '@astrojs/starlight/components';
 import LastChecked from '../../../../components/LastChecked.astro';
 import Waitlist from '../../../../components/Waitlist.astro';
 
-You'll need: your Telekin address with `/mcp` at the end (the `<server URL>` below), and a key you make for Claude Code ([Make a key](/how-to/guides/make-a-key/)).
+You'll need: your Telekin account ([Set up your account](/start/set-up-your-account/)) and a browser on the same computer as Claude Code.
 
 <Waitlist />
 
-For the fuller setup, where Claude Code checks Telekin at the start of every session, see [Claude Code, enhanced](/how-to/connect/claude-code-enhanced/).
+Claude Code signs in in your browser with your Telekin account, so there's no key to copy or paste. For the fuller setup, where Claude Code checks Telekin at the start of every session, see [Claude Code, enhanced](/how-to/connect/claude-code-enhanced/).
 
 ## Add the server
 
 <Steps>
 
-1. Run this in a terminal, with your own server URL and key:
+1. Run this in a terminal:
 
    ```bash
-   claude mcp add --transport http --scope user okf-mcp <server URL> \
-     --header "Authorization: Bearer <your key>"
+   claude mcp add --transport http --scope user telekin https://app.telekin.ai/mcp
    ```
 
-   It should print `Added HTTP MCP server okf-mcp with URL: ...` and show the `Authorization` header as `[REDACTED]`.
+   It should print `Added HTTP MCP server telekin with URL: https://app.telekin.ai/mcp`.
 
-2. Start `claude` and run `/mcp`. You should see `okf-mcp` listed as connected. Outside a session, `claude mcp list` shows the same.
+2. Start `claude` and run `/mcp`. Choose `telekin`, then **Authenticate**. (From a shell, `claude mcp login telekin` does the same.) Your browser opens Telekin's page. If no browser opens, copy the address Claude Code shows and open it yourself.
+
+3. If you're not signed in to Telekin, sign in. The page, **Allow access?**, names Claude Code and says what **Approve** gives it: with one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default. Choose **Approve**. With more than one memory, choose under **Advanced Options** first. (**Deny** connects nothing.)
+
+4. Back in Claude Code, `/mcp` should show `telekin` as connected. Outside a session, `claude mcp list` shows the same.
 
 </Steps>
 
-Keep the name `okf-mcp`: Telekin runs on the open-source okf-mcp server, and the tool names depend on it.
-
 `--scope user` makes the server available in every project. Without it, the server is added only to the directory you ran the command in.
 
-You don't need a catalog header, because your key already points at your catalog. If you ever have access to more than one, the header is `X-OKF-Catalogs` (plural), e.g. `--header "X-OKF-Catalogs: t01"` — see [Connection settings](/reference/connection-settings/) for the full spec.
+Claude Code keeps the sign-in and renews it on its own, so you sign in once per computer. You don't need a catalog header: the memory you approved is the default.
+
+## Use a key instead
+
+On a machine without a browser, such as a server you reach over SSH, use a key ([Make a key](/how-to/guides/make-a-key/)):
+
+```bash
+claude mcp add --transport http --scope user telekin https://app.telekin.ai/mcp \
+  --header "Authorization: Bearer <your key>"
+```
+
+With an `Authorization` header set, Claude Code uses the key and doesn't offer to sign in.
 
 ## Check it works
 
-In a Claude Code session, ask: **"What do you know about me?"** Claude should use the `okf-mcp` tools to search Telekin. On an empty memory it will tell you there's nothing yet. Claude Code asks your permission before using a tool, so approve the request when it appears.
+In a Claude Code session, ask: **"What do you know about me?"** Claude should use the `telekin` tools to search Telekin. On an empty memory it will tell you there's nothing yet. Claude Code asks your permission before using a tool, so approve the request when it appears.
 
 ## Undo it
 
 ```bash
-claude mcp remove okf-mcp --scope user
+claude mcp logout telekin
+claude mcp remove telekin --scope user
 ```
 
-<LastChecked date="2026-11-12" />
+`logout` signs Claude Code out; `remove` alone only forgets the server on this computer. You can also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the Claude Code connection, then **Revoke**. If you used a key, revoke it on **My keys**.
+
+If you added Telekin before under the name `okf-mcp`, remove that one the same way, with `okf-mcp` in place of `telekin`.
+
+<LastChecked date="2026-11-23" />

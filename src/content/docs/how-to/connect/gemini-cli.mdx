@@ -1,6 +1,6 @@
 ---
 title: Connect Gemini CLI
-description: Add Telekin to Gemini CLI with one command or a settings entry.
+description: Add Telekin to Gemini CLI with one command and sign in in your browser.
 sidebar:
   order: 13
 ---
@@ -9,9 +9,11 @@ import { Steps } from '@astrojs/starlight/components';
 import LastChecked from '../../../../components/LastChecked.astro';
 import Waitlist from '../../../../components/Waitlist.astro';
 
-You'll need: your Telekin address with `/mcp` at the end (the `<server URL>` below), and a key you make for Gemini CLI ([Make a key](/how-to/guides/make-a-key/)).
+You'll need: your Telekin account ([Set up your account](/start/set-up-your-account/)) and a browser on the same computer as Gemini CLI.
 
 <Waitlist />
+
+Gemini CLI finds Telekin's sign-in by itself and signs in in your browser with your Telekin account, so there's no key to copy or paste.
 
 This page is for Gemini CLI. Google's docs say Gemini CLI has been replaced by a different tool (Antigravity CLI) for some users, including people on the unpaid tier. We haven't checked whether that tool reads the same settings, so if you use it, this page may not apply.
 
@@ -19,28 +21,27 @@ This page is for Gemini CLI. Google's docs say Gemini CLI has been replaced by a
 
 <Steps>
 
-1. Run this in a terminal, with your own server URL and key:
+1. Run this in a terminal:
 
    ```bash
-   gemini mcp add --transport http --scope user --header "Authorization: Bearer <your key>" telekin <server URL>
+   gemini mcp add --transport http --scope user telekin https://app.telekin.ai/mcp
    ```
 
-   The `--scope user` part makes the server available in every project. Without it, the server is added only to the project you ran the command in. This exact combination of flags isn't shown in Google's docs, but each flag is, so it should work. If it doesn't, use the settings file below.
+   The `--scope user` part makes the server available in every project. Without it, the server is added only to the project you ran the command in.
 
-2. Start `gemini` and ask it what tools it has from Telekin.
+2. Start `gemini` and run `/mcp auth telekin`. Your browser opens Telekin's page.
+
+3. If you're not signed in to Telekin, sign in. The page, **Allow access?**, says what **Approve** gives Gemini CLI: with one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default. Choose **Approve**. With more than one memory, choose under **Advanced Options** first. (**Deny** connects nothing.)
 
 </Steps>
 
-Prefer a file? Add this to `~/.gemini/settings.json`:
+Prefer a file? Add this to `~/.gemini/settings.json`, then run `/mcp auth telekin` as above:
 
 ```json
 {
   "mcpServers": {
     "telekin": {
-      "httpUrl": "<server URL>",
-      "headers": {
-        "Authorization": "Bearer <your key>"
-      }
+      "httpUrl": "https://app.telekin.ai/mcp"
     }
   }
 }
@@ -48,14 +49,26 @@ Prefer a file? Add this to `~/.gemini/settings.json`:
 
 Gemini CLI uses `httpUrl` for this kind of server. Don't use `url`, which means the older SSE style. Avoid underscores in the server name.
 
+The browser sign-in needs a browser on the same machine, so it doesn't work over SSH or in a container. There, use a key.
+
+## Use a key instead
+
+Make a key ([Make a key](/how-to/guides/make-a-key/)) and add it as a header:
+
+```bash
+gemini mcp add --transport http --scope user --header "Authorization: Bearer <your key>" telekin https://app.telekin.ai/mcp
+```
+
+In `settings.json`, that's a `"headers": { "Authorization": "Bearer <your key>" }` entry beside `httpUrl`.
+
 ## Check it works
 
 In a Gemini CLI session, ask: **"What tools do you have from Telekin?"** You should see a list. Then ask **"What do you know about me?"**; on an empty memory it will say there's nothing yet.
 
-If it won't connect, check that the URL ends in `/mcp` and that the header value starts with `Bearer ` (with a space).
+If it won't connect, check that the URL ends in `/mcp`, and run `/mcp auth telekin` again. With a key, check that the header value starts with `Bearer ` (with a space).
 
 ## Undo it
 
-Delete the `"telekin"` entry from `~/.gemini/settings.json` (or from the project's `.gemini/settings.json`, if you added it without `--scope user`).
+Delete the `"telekin"` entry from `~/.gemini/settings.json` (or from the project's `.gemini/settings.json`, if you added it without `--scope user`). To disconnect it from Telekin's side, open **My grants** in your Telekin console, choose the Gemini CLI connection, then **Revoke**. If you used a key, revoke it on **My keys**.
 
-<LastChecked date="2026-11-12" />
+<LastChecked date="2026-11-23" />

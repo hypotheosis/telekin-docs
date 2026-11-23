@@ -7,16 +7,20 @@ sidebar:
 
 When your AI app connects to Telekin, it gets a set of tools. You don't call them yourself: you talk to your AI, and it picks the right tool. This page lists them so you know what your AI is able to do, and what to expect it to ask permission for.
 
-Telekin runs on an open-source server called okf-mcp, so your AI app may show these names with a prefix such as `okf-mcp`.
+Your AI app may show these names with a prefix, such as `telekin` (the name you gave the server when you connected it). The full technical reference, with every parameter, is the [okf-mcp tool reference](https://github.com/hypotheosis/okf_mcp/blob/main/docs/reference/tools.md); Telekin runs on that open-source server.
+
+When you ask your AI to remember something, Telekin tells it to save it to your memory rather than keep it in the chat, and that your asking is enough permission.
 
 ## Finding things
 
 | Tool | What it does for you |
 |---|---|
 | `search` | Looks for concepts (the pages in your memory) that match all of your words, and shows a short snippet of each hit. |
-| `get_concept` | Reads one concept in full, or just one section of a long one. |
+| `get_concept` | Reads one concept in full, or just one section of a long one. If the section isn't there, it lists the sections that are. |
 | `read_document` | Reads a folder's contents page (`index.md`), the change log (`log.md`) or the catalog's house rules (`AGENTS.md`). |
-| `list_catalogs` | Shows which catalogs your key can reach, and which one is in use right now. |
+| `list_catalogs` | Shows which catalogs your connection can reach, by name and display name, and which one is in use right now. |
+| `whoami` | Says who the AI is acting for: your account, whether it signed in or uses a key, what it can reach, its default catalog, and Telekin's current time. |
+| `cited_by` | Finds the concepts that cite a given source, such as a document or a web page. |
 
 ## Writing (always as a draft first)
 
@@ -32,7 +36,7 @@ Nothing your AI writes is visible until it publishes. Until then it sits in a dr
 | `add_source` | Records where a fact came from, such as a document or a conversation. |
 | `remove_source` | Removes a recorded source that is no longer cited. |
 | `log` | Adds a dated line to the catalog's change log. |
-| `index` | Lists a concept on its folder's contents page. |
+| `index` | Lists a concept on its folder's contents page, or describes a folder on its parent's contents page. |
 | `pending_changes` | Shows exactly what the draft would change, line by line. |
 | `lint` | Checks the draft, or the whole catalog, for mistakes such as broken links. |
 | `publish` | Makes the draft real, with a short message saying what changed. |
@@ -59,15 +63,26 @@ Nothing your AI writes is visible until it publishes. Until then it sits in a dr
 | `move_concept` | Moves or renames a concept and fixes every link to it. |
 | `split_concept` | Carves one section out of a long concept into a new concept of its own. |
 | `delete_concept` | Deletes a concept. It refuses while anything still links to it. |
+| `repair_indexes` | Fills in missing contents pages and listings, as a draft you publish like any other change. |
 
 ## History
 
 | Tool | What it does for you |
 |---|---|
-| `history` | Lists every past version of a document, with the message, who made it (the name tied to your key) and when. |
+| `history` | Lists every past version of a document, with the message, who made it (the name tied to your key or connection) and when. |
 | `revert` | Brings back an earlier version, as a new draft that you publish like any other change. |
 
 Because every publish is kept in the history, an unwanted change can be undone. See [Review, undo and export](/how-to/guides/review-undo-export/).
+
+## Feedback
+
+| Tool | What it does for you |
+|---|---|
+| `send_feedback` | Sends feedback about Telekin (something broken, confusing, missing or good) to the Telekin team, through a third-party form service. Ask your AI to "send feedback to Telekin that...". It should ask you before including anything from your memory or personal details. |
+
+## Maintenance
+
+Tools whose names start with `maintenance_` are for Telekin's automated catalog checks. They need a special kind of key, so your AI can't use them, even though it may see them listed.
 
 ## How tools are used
 

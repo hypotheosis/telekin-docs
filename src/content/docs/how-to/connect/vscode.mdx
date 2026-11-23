@@ -1,6 +1,6 @@
 ---
 title: Connect VS Code (GitHub Copilot)
-description: Add Telekin to VS Code so GitHub Copilot's agent mode can use it, with the key kept out of the file.
+description: Add Telekin to VS Code so GitHub Copilot's agent mode can use it, and sign in in your browser.
 sidebar:
   order: 10
 ---
@@ -9,63 +9,79 @@ import { Steps } from '@astrojs/starlight/components';
 import LastChecked from '../../../../components/LastChecked.astro';
 import Waitlist from '../../../../components/Waitlist.astro';
 
-You'll need: your Telekin address with `/mcp` at the end (the `<server URL>` below), and a key you make for VS Code ([Make a key](/how-to/guides/make-a-key/)).
+You'll need: your Telekin account ([Set up your account](/start/set-up-your-account/)).
 
 <Waitlist />
 
-VS Code has two ways to describe MCP servers, and newer Copilot setups also read separate files of their own. This page uses VS Code's own `mcp.json` file, because it can ask you for your key and store it securely instead of leaving it in the file.
+VS Code signs in in your browser with your Telekin account, so there's no key to copy or paste.
 
 ## Add the server
 
-VS Code reads servers from a file called `mcp.json`. There are two places for it:
-
-- `.vscode/mcp.json` inside a project is the **workspace** file: the server is available only in that project.
-- The `mcp.json` in your **user profile** is available in every project.
-
 <Steps>
 
-1. Create or edit one of those files so it contains this, with your own server URL. If the file already has other servers, add the `"telekin"` entry inside `servers` and the key prompt inside `inputs`.
+1. Open the Command Palette and run **MCP: Add Server**. Choose **HTTP**, enter `https://app.telekin.ai/mcp` as the URL, and `telekin` as the server ID. Choose whether it's for this workspace or for every project.
+
+   Or add it to an MCP config file yourself. The server entry needs only the address:
 
    ```json
    {
-     "inputs": [
-       {
-         "type": "promptString",
-         "id": "telekin-key",
-         "description": "Telekin key",
-         "password": true
-       }
-     ],
      "servers": {
        "telekin": {
          "type": "http",
-         "url": "<server URL>",
-         "headers": {
-           "Authorization": "Bearer ${input:telekin-key}"
-         }
+         "url": "https://app.telekin.ai/mcp"
        }
      }
    }
    ```
 
-2. Start the server from the file. VS Code usually shows a Start control above the server entry in the file. The first time it starts, VS Code asks for the value of `telekin-key`. Enter `<your key>` alone, without the word `Bearer`: the file already adds it. VS Code stores it for next time. If nothing asks for your key, reload the window.
+2. When the server starts, VS Code asks to sign in. Allow it, and your browser opens Telekin's page. If nothing asks, look for an **Authenticate** action on the server in the MCP server list.
+
+3. If you're not signed in to Telekin, sign in. The page, **Allow access?**, names VS Code and says what **Approve** gives it: with one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default. Choose **Approve**. With more than one memory, choose under **Advanced Options** first. (**Deny** connects nothing.)
+
+4. Back in VS Code, `telekin` should show as running, with its tools listed.
 
 </Steps>
 
-If you would rather paste the key into the file, replace the value `Bearer ${input:telekin-key}` with `Bearer <your key>` and delete the `inputs` section. Then don't commit that file to a shared repository.
-
-You can also run **MCP: Add Server** from the Command Palette, choose the HTTP option and enter the URL. That flow doesn't ask for a header, so you'd still edit the JSON afterwards to add the `headers` section.
+VS Code's docs now describe more than one place and format for MCP servers, and newer Copilot setups read a `.mcp.json` file with an `mcpServers` list. Whichever file you use, the entry is just Telekin's address; leave out any `headers`.
 
 Organization settings can restrict MCP access in VS Code. If you can't add the server, ask whoever manages your Copilot.
+
+## Use a key instead
+
+If you'd rather not sign in in the browser, make a key ([Make a key](/how-to/guides/make-a-key/)) and let VS Code ask for it once and store it securely:
+
+```json
+{
+  "inputs": [
+    {
+      "type": "promptString",
+      "id": "telekin-key",
+      "description": "Telekin key",
+      "password": true
+    }
+  ],
+  "servers": {
+    "telekin": {
+      "type": "http",
+      "url": "https://app.telekin.ai/mcp",
+      "headers": {
+        "Authorization": "Bearer ${input:telekin-key}"
+      }
+    }
+  }
+}
+```
+
+When VS Code asks for `telekin-key`, enter the key alone, without the word `Bearer`: the file already adds it.
 
 ## Check it works
 
 Open Copilot chat in agent mode and ask: **"What tools do you have from Telekin?"** You should see a list. Then ask **"What do you know about me?"**; on an empty memory it will say there's nothing yet. VS Code asks you to approve each tool call, so approve the request when it appears.
 
-If it won't connect, check that the URL ends in `/mcp` and that the key you entered is only the key.
+If it won't connect, check that the URL ends in `/mcp`.
 
 ## Undo it
 
-Delete the `"telekin"` entry (and the `telekin-key` input) from the `mcp.json` file you edited.
+Delete the `"telekin"` entry from the MCP config file, or remove the server from VS Code's MCP server list. To disconnect it from Telekin's side, open **My grants** in your Telekin console, choose the VS Code connection, then **Revoke**. If you used a key, revoke it on **My keys**.
 
-<LastChecked date="2026-11-12" />
+<LastChecked date="2026-11-23" />

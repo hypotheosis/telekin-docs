@@ -21,7 +21,11 @@ Check the email address and password for typos first. If they're right, the acco
 
 ## The connector won't connect
 
-Check that the URL is your Telekin address with `/mcp` at the end. In a developer tool that uses a key, also check that the header value starts with `Bearer ` (with a space). In Claude on the web or ChatGPT, you sign in in your browser instead of sending a header.
+Check that the URL is `https://app.telekin.ai/mcp`, with `/mcp` at the end. If you use a key, also check that the header value starts with `Bearer ` (with a space). If you meant to sign in in the browser, check that there's no `Authorization` header left in the app's settings: some apps skip the sign-in when one is set.
+
+## The sign-in page never opens
+
+Some apps sign in only when you ask: in Claude Code, run `/mcp` and choose **Authenticate**; in Codex CLI, run `codex mcp login telekin`; in Gemini CLI, run `/mcp auth telekin`. On a machine with no browser, such as over SSH, copy the address the app prints into a browser on another device if the app allows it, or use a key ([Make a key](/how-to/guides/make-a-key/)).
 
 ## The sign-in stopped partway
 
@@ -37,10 +41,10 @@ The message names the limit: more access than your account has, more keys than y
 
 ## A connection that worked has stopped
 
-In your Telekin console, check **My keys** (for a developer tool) or **My grants** (for Claude on the web or ChatGPT).
+In your Telekin console, check **My grants** (for an app that signed in in the browser) or **My keys** (for an app that uses a key).
 
 - A key may have **expired** or been **revoked**. Tick **Show revoked and expired keys** to see it. Make a new key and put it in the tool in place of the old one.
-- A connection that's gone from **My grants** was revoked. Remove the connector in the app, add it again and approve it.
+- A connection on **My grants** that shows as revoked, or is gone, was disconnected: by you, or automatically after 30 days unused. Sign in again from the app (for example `/mcp`, then **Authenticate**, in Claude Code), or remove the connector and add it again, and approve it.
 - If your account's access was lowered, the key or connection reaches less than before. See [A memory isn't in the list](#a-memory-isnt-in-the-list).
 
 ## The AI says it has no tools
@@ -57,8 +61,8 @@ The free plan allows only one custom connector — see [Connect Claude](/how-to/
 
 ## A header seems to be ignored
 
-Most people don't need a catalog header at all, because the key already points at your catalog. If you use one, a misspelled name is silently ignored, with no error — check the spelling first. The full header spec is in [Connection settings](/reference/connection-settings/).
+Most people don't need a catalog header at all, because Telekin already uses your default catalog, or your only one. If you use one, a misspelled name is silently ignored, with no error — check the spelling first. The full header spec is in [Connection settings](/reference/connection-settings/).
 
 ## Anything else
 
-<a href={CONTACT_URL}>Send us a message</a> with a screenshot. Leave your key out of the screenshot.
+<a href={CONTACT_URL}>Send us a message</a> with a screenshot, or use [Send feedback](/feedback/). Leave any key out of the screenshot.

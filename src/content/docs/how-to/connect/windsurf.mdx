@@ -1,6 +1,6 @@
 ---
 title: Connect Windsurf
-description: Add Telekin to Windsurf by editing its MCP config file.
+description: Add Telekin to Windsurf's MCP config file and sign in in your browser.
 sidebar:
   order: 11
 ---
@@ -10,48 +10,61 @@ import LastChecked from '../../../../components/LastChecked.astro';
 import Waitlist from '../../../../components/Waitlist.astro';
 import { CONTACT_URL } from '../../../../site-config.mjs';
 
-You'll need: your Telekin address with `/mcp` at the end (the `<server URL>` below), and a key you make for Windsurf ([Make a key](/how-to/guides/make-a-key/)).
+You'll need: your Telekin account ([Set up your account](/start/set-up-your-account/)).
 
 <Waitlist />
 
+Windsurf supports OAuth for remote servers, so it signs in in your browser with your Telekin account and there's no key to copy or paste.
+
 ## Add the server
 
-Windsurf keeps its servers in a file called `mcp_config.json`. Its docs name more than one location for that file, so don't go looking for it by path. Let Windsurf open the right one for you.
+Windsurf keeps its servers in a file called `mcp_config.json`. Where that file lives has changed between Windsurf versions, so don't go looking for it by path. Let Windsurf open the right one for you.
 
 <Steps>
 
-1. In Windsurf's Cascade panel, open the MCP menu and choose **Open MCP config file**. (Alternatively, go to **Settings, then Tools, then Windsurf Settings**, and use **Add Server**.)
-2. Make the file contain this, with your own server URL and key. If it already has other servers, add only the `"telekin"` entry inside `mcpServers`.
+1. In Windsurf's Cascade panel, open the MCP menu and choose **Open MCP config file**.
+2. Make the file contain this. If it already has other servers, add only the `"telekin"` entry inside `mcpServers`.
 
    ```json
    {
      "mcpServers": {
        "telekin": {
-         "serverUrl": "<server URL>",
-         "headers": {
-           "Authorization": "Bearer <your key>"
-         }
+         "serverUrl": "https://app.telekin.ai/mcp"
        }
      }
    }
    ```
 
 3. Save the file, then press the refresh button in the MCP menu so Cascade picks up the change.
+4. Windsurf opens Telekin's page in your browser. If you're not signed in to Telekin, sign in. The page, **Allow access?**, says what **Approve** gives Windsurf: with one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default. Choose **Approve**. With more than one memory, choose under **Advanced Options** first.
 
 </Steps>
 
-Windsurf's docs show `headers` with a different example header name, not `Authorization`, so `Authorization` should work here but we haven't seen it written out there. If the server doesn't connect, <a href={CONTACT_URL}>tell us</a>.
+Windsurf's docs don't spell out when the sign-in page opens. If it doesn't open, check Telekin's entry in the MCP menu for a sign-in or authenticate action, and <a href={CONTACT_URL}>tell us</a> what you saw.
 
 On Enterprise, MCP has to be turned on in settings. On a team, admins can turn MCP on or off and limit which servers are allowed.
+
+## Use a key instead
+
+Make a key ([Make a key](/how-to/guides/make-a-key/)) and add a `headers` section to the entry:
+
+```json
+"telekin": {
+  "serverUrl": "https://app.telekin.ai/mcp",
+  "headers": {
+    "Authorization": "Bearer <your key>"
+  }
+}
+```
 
 ## Check it works
 
 In a Cascade chat, ask: **"What tools do you have from Telekin?"** You should see a list. Then ask **"What do you know about me?"**; on an empty memory it will say there's nothing yet.
 
-If it won't connect, check that the URL ends in `/mcp` and that the header value starts with `Bearer ` (with a space).
+If it won't connect, check that the URL ends in `/mcp`. With a key, check that the header value starts with `Bearer ` (with a space).
 
 ## Undo it
 
-Use **Open MCP config file** again, delete the `"telekin"` entry, save, and press refresh.
+Use **Open MCP config file** again, delete the `"telekin"` entry, save, and press refresh. To disconnect it from Telekin's side, open **My grants** in your Telekin console, choose the Windsurf connection, then **Revoke**. If you used a key, revoke it on **My keys**.
 
-<LastChecked date="2026-11-12" />
+<LastChecked date="2026-11-23" />

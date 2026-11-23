@@ -1,9 +1,9 @@
 ---
-title: Make a key for a developer tool
-description: Create a key on My keys for Claude Code, Cursor or another developer tool, keep it safe, and revoke it when you're done.
+title: Make a key for an app that can't sign in
+description: Create a key on My keys for an app that can't sign in in the browser, keep it safe, and revoke it when you're done.
 sidebar:
   label: Make a key
-  order: 0.5
+  order: 4.5
 ---
 
 import { Steps } from '@astrojs/starlight/components';
@@ -15,7 +15,13 @@ A **key** is a long secret that lets one app reach your memory without signing i
 
 ## When you need one
 
-Developer tools need a key: Claude Code, Cursor (unless you use its one-click install, which signs in in your browser), VS Code, Windsurf, Codex CLI, Gemini CLI, Cline, and most other tools that connect to MCP servers. Claude on the web and desktop and ChatGPT don't: they sign in in your browser with your account instead.
+Mostly, you don't. Claude, ChatGPT, Claude Code, Cursor, VS Code, Windsurf, Codex CLI, Gemini CLI and Zed all sign in in your browser with your Telekin account, with nothing to copy. Make a key only when that isn't possible:
+
+- the app can't sign in with OAuth (the Cline extension, for example);
+- the app runs on a machine with no browser, such as a server you reach over SSH, or a container;
+- a script or automation of your own talks to Telekin.
+
+Each app's guide in [Connect your AI](/how-to/connect/) has a "Use a key instead" section showing where the key goes.
 
 You'll need your Telekin account. If you haven't set it up yet, see [Set up your account](/start/set-up-your-account/).
 

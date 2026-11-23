@@ -9,7 +9,7 @@ import { Steps } from '@astrojs/starlight/components';
 import LastChecked from '../../../../components/LastChecked.astro';
 import Waitlist from '../../../../components/Waitlist.astro';
 
-You'll need: your Telekin address with `/mcp` at the end (the `<server URL>` below), and a key you make for Cline ([Make a key](/how-to/guides/make-a-key/)).
+You'll need: a key you make for Cline ([Make a key](/how-to/guides/make-a-key/)). If you use the Cline command line, you can sign in in your browser instead; see [Sign in from the Cline command line](#sign-in-from-the-cline-command-line).
 
 <Waitlist />
 
@@ -18,14 +18,14 @@ You'll need: your Telekin address with `/mcp` at the end (the `<server URL>` bel
 <Steps>
 
 1. In the Cline panel, click the **MCP Servers** icon in the toolbar, then open the **Configure** tab and choose **Configure MCP Servers**. This opens Cline's settings file.
-2. Make the file contain this, with your own server URL and key. If it already has other servers, add only the `"telekin"` entry inside `mcpServers`.
+2. Make the file contain this, with your own key. If it already has other servers, add only the `"telekin"` entry inside `mcpServers`.
 
    ```json
    {
      "mcpServers": {
        "telekin": {
          "type": "streamableHttp",
-         "url": "<server URL>",
+         "url": "https://app.telekin.ai/mcp",
          "headers": {
            "Authorization": "Bearer <your key>"
          },
@@ -46,6 +46,10 @@ The **Remote Servers** tab can add a server from a name and URL, but the header 
 
 If you use the Cline command line instead, its settings file is `~/.cline/data/settings/cline_mcp_settings.json`.
 
+## Sign in from the Cline command line
+
+Cline's docs describe signing in with OAuth only for the command line. Add the entry above without the `headers` section, then run `cline mcp`, choose Telekin and **Authorize OAuth**. Your browser opens Telekin's page: sign in if you're asked, and choose **Approve** (with more than one memory, choose under **Advanced Options** first). The Cline extension may offer the same sign-in, but its docs don't say so yet, so the key is the sure route there.
+
 ## Check it works
 
 In a Cline chat, ask: **"What tools do you have from Telekin?"** You should see a list. Then ask **"What do you know about me?"**; on an empty memory it will say there's nothing yet.
@@ -54,6 +58,6 @@ If it won't connect, check that the URL ends in `/mcp` and that the header value
 
 ## Undo it
 
-Open the same settings file, delete the `"telekin"` entry, and save.
+Open the same settings file, delete the `"telekin"` entry, and save. Then revoke the key on **My keys** in your Telekin console, or, if you signed in, the connection on **My grants**.
 
-<LastChecked date="2026-11-12" />
+<LastChecked date="2026-11-23" />

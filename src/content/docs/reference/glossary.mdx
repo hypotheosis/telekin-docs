@@ -39,19 +39,27 @@ How you sign in to Telekin, with your email and a password, or a passkey. You se
 
 ## Console
 
-Your Telekin's web pages, at your Telekin address. You sign in there to make keys (**My keys**), see and revoke app connections (**My grants**), and look after your password, passkeys and sessions (**Account**).
+Telekin's web pages, at `https://app.telekin.ai`. You sign in there to browse your memory (**Browse**, **Recent changes**, **Search**), download it (**Import & export**), see and revoke app connections (**My grants**) and keys (**My keys**), and look after your password, passkeys, sessions and display name (**Account**).
 
 ## Grant
 
-An app connection you approved in your browser, such as Claude on the web or ChatGPT. It reaches the catalogs you ticked, at the level you chose. Grants are listed on **My grants** in the console, where you can revoke one.
+An app connection you approved in your browser, such as Claude, ChatGPT or Claude Code. It reaches the catalogs you approved, at the level you chose. Grants are listed on **My grants** in the console, with when each was last active, and you can revoke one there. A grant unused for 30 days is revoked automatically.
 
 ## Key
 
-A secret that lets a developer tool, such as Claude Code or Cursor, reach your catalogs without signing in. You make one for each tool on **My keys** in the console, and it's shown only once. See [Make a key](/how-to/guides/make-a-key/).
+A secret that lets an app reach your catalogs without signing in in the browser, for apps or machines that can't. You make one for each app on **My keys** in the console, and it's shown only once. See [Make a key](/how-to/guides/make-a-key/).
 
 ## OAuth
 
-A standard way for an app to be signed in without you handing it a password or key. The app sends you to a sign-in page in your browser, you approve it, and you're sent back. In Telekin, you sign in with your account and choose which catalogs the app may use. Claude on the web and ChatGPT connect this way.
+A standard way for an app to be signed in without you handing it a password or key. The app sends you to a sign-in page in your browser, you approve it, and you're sent back. In Telekin, you sign in with your account and approve which catalogs the app may use. Almost every app connects this way.
+
+## Display name
+
+The readable name of a catalog, team or person, such as "Alex's notes", shown on Telekin's pages and in what your AI sees, beside the short name (such as `t01`) that settings use. You can change your own on the **Account** page.
+
+## Reader
+
+The Telekin Reader, a read-only app at `https://app.telekin.ai/read/` for reading your memory on your phone, offline too. See [Read your memory on your phone](/how-to/guides/read-on-your-phone/).
 
 ## OKF
 

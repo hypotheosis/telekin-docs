@@ -24,7 +24,7 @@ The button below opens Cursor and offers to install Telekin. Cursor then signs i
 1. Click **Add Telekin to Cursor**. If your browser asks whether to open Cursor, allow it.
 2. Cursor shows the server it's about to add, named `telekin`. Confirm the install.
 3. Cursor opens Telekin's page in your browser. If you're not signed in, sign in with your Telekin account first.
-4. The page, **Allow access?**, names the app that's connecting. Tick each memory Cursor may use (Telekin's screens call memories catalogs), and choose **read** or **write** for each; choose **write** if you want Cursor to save what it learns. Pick a **Default catalog**, the memory it uses when it doesn't name one, and choose **Approve**. (**Deny** connects nothing.)
+4. The page, **Allow access?**, names the app that's connecting and says what **Approve** gives it. With one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default catalog, so Cursor can save what it learns. Choose **Approve**. With more than one memory, the choices start open under **Advanced Options**: tick each memory Cursor may use, choose **read** or **write** for each, pick a **Default catalog** (the memory it uses when it doesn't name one), then **Approve**. (**Deny** connects nothing.)
 5. Go back to Cursor. `telekin` should show as connected in its MCP settings, with its tools listed.
 
 </Steps>
@@ -80,4 +80,4 @@ If it won't connect, check that the URL ends in `/mcp`. If you use a key, check 
 
 Remove `telekin` from Cursor's MCP settings, or delete the `"telekin"` entry from the `mcp.json` file you edited, and restart Cursor. If you signed in in the browser, also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the Cursor connection, then **Revoke**.
 
-<LastChecked date="2026-11-15" />
+<LastChecked date="2026-11-23" />

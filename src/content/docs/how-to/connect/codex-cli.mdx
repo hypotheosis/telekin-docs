@@ -1,6 +1,6 @@
 ---
 title: Connect OpenAI Codex CLI
-description: Add Telekin to the Codex CLI with a config file entry and an environment variable for your key.
+description: Add Telekin to the Codex CLI with one command and sign in in your browser.
 sidebar:
   order: 12
 ---
@@ -9,44 +9,67 @@ import { Steps } from '@astrojs/starlight/components';
 import LastChecked from '../../../../components/LastChecked.astro';
 import Waitlist from '../../../../components/Waitlist.astro';
 
-You'll need: your Telekin address with `/mcp` at the end (the `<server URL>` below), and a key you make for Codex CLI ([Make a key](/how-to/guides/make-a-key/)).
+You'll need: your Telekin account ([Set up your account](/start/set-up-your-account/)).
 
 <Waitlist />
 
-Codex's `codex mcp add` command doesn't have a documented way to pass a key, so this page uses its config file instead. The key goes in an environment variable, not in the file.
+Codex signs in in your browser with your Telekin account, so there's no key to copy or paste.
 
 ## Add the server
 
 <Steps>
 
-1. Open `~/.codex/config.toml`. (For one project only, you can use `.codex/config.toml` inside a project you've told Codex to trust.) Add this, with your own server URL:
-
-   ```toml
-   [mcp_servers.telekin]
-   url = "<server URL>"
-   bearer_token_env_var = "TELEKIN_KEY"
-   ```
-
-2. In the shell you'll start Codex from, set the variable to your key. Use the key alone, without the word `Bearer`: Codex sends it as a bearer token.
+1. Run this in a terminal:
 
    ```bash
-   export TELEKIN_KEY="<your key>"
+   codex mcp add telekin --url https://app.telekin.ai/mcp
    ```
 
-3. Start Codex from that same shell.
+   It adds a `[mcp_servers.telekin]` table to `~/.codex/config.toml`.
+
+2. Sign in:
+
+   ```bash
+   codex mcp login telekin
+   ```
+
+   Your browser opens Telekin's page. On a machine without a browser, add `--no-browser` and open the address Codex prints yourself.
+
+3. If you're not signed in to Telekin, sign in. The page, **Allow access?**, says what **Approve** gives Codex: with one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default. Choose **Approve**. With more than one memory, choose under **Advanced Options** first. (**Deny** connects nothing.)
+
+4. Start `codex`. Run `/mcp` to see `telekin` among the active servers.
 
 </Steps>
 
-To keep the variable for later sessions, add the `export` line to your shell's startup file.
+## Use a key instead
+
+Make a key ([Make a key](/how-to/guides/make-a-key/)) and keep it in an environment variable rather than in the file. In `~/.codex/config.toml`:
+
+```toml
+[mcp_servers.telekin]
+url = "https://app.telekin.ai/mcp"
+bearer_token_env_var = "TELEKIN_KEY"
+```
+
+Then, in the shell you start Codex from, set the variable to the key alone, without the word `Bearer`:
+
+```bash
+export TELEKIN_KEY="<your key>"
+```
 
 ## Check it works
 
 In a Codex session, ask: **"What tools do you have from Telekin?"** You should see a list. Then ask **"What do you know about me?"**; on an empty memory it will say there's nothing yet.
 
-If it won't connect, check that the URL ends in `/mcp`, and that `TELEKIN_KEY` is set in the shell you started Codex from.
+If it won't connect, check that the URL ends in `/mcp`, and run `codex mcp login telekin` again. With a key, check that `TELEKIN_KEY` is set in the shell you started Codex from.
 
 ## Undo it
 
-Delete the `[mcp_servers.telekin]` table from the config file you edited, and remove the `export` line if you added one.
+```bash
+codex mcp logout telekin
+codex mcp remove telekin
+```
 
-<LastChecked date="2026-11-12" />
+To disconnect it from Telekin's side, open **My grants** in your Telekin console, choose the Codex connection, then **Revoke**. If you used a key, revoke it on **My keys** and remove the `export` line if you added one.
+
+<LastChecked date="2026-11-23" />

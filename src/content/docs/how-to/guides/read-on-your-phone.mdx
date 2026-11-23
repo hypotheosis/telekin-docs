@@ -1,0 +1,49 @@
+---
+title: Read your memory on your phone
+description: Install the Telekin Reader on your phone to browse, search and read your memory, even offline.
+sidebar:
+  order: 3.5
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+
+The **Telekin Reader** is a small app for reading your memory yourself, on your phone or any browser. It lives at `https://app.telekin.ai/read/` and signs in with your Telekin account. It only reads: nothing you do in it changes your memory.
+
+## Install it
+
+<Steps>
+
+1. On your phone, open `https://app.telekin.ai/read/`.
+2. Install it:
+   - **iPhone and iPad:** in Safari, tap **Share**, then **Add to Home Screen**.
+   - **Android:** in Chrome, accept the install prompt, or install it from Chrome's menu.
+3. Open **Telekin** from your home screen and choose **Sign in**. Sign in with your Telekin account; a passkey makes this quick. You're sent back to the Reader.
+
+</Steps>
+
+On iPhone and iPad the installed app keeps its own sign-in, separate from Safari's, so sign in once inside it.
+
+If your account reaches one memory, the Reader opens it straight away. With more than one, pick it from the list; tap the memory's name at the top to switch later.
+
+## What you can do
+
+The Reader has four tabs at the bottom:
+
+- **Home:** a search box, **Jump back in** (the last pages you opened on this device), and **Activity**, a timeline of what changed, who changed it and when. Filter it to **Created**, **Edited**, **Deleted** or **By me**.
+- **Browse:** your memory's folders and pages. A folder shows what it's about, its subfolders and its pages, and a **Log** of changes.
+- **Search:** finds pages that match your words, with a short snippet of each.
+- **Account:** who you're signed in as, **Appearance** (System, Light or Dark), **Sign out** and **Delete offline copies**.
+
+A page shows its type and tags, how long it takes to read, who edited it last, an **On this page** outline, the whole text, and **Linked from**: the other pages that link to it.
+
+## Offline
+
+The Reader keeps a copy of each page you open, up to 200, so you can read them without a connection. Offline, Home lists them under **Available offline**, with when each was last synced. Search needs a connection.
+
+<Aside type="note" title="Leaving a shared phone">
+**Sign out** on the Account tab ends your session. **Delete offline copies** removes the pages kept on this device. If Telekin signs you out, for example because your account's access changed, the Reader deletes its offline copies by itself.
+</Aside>
+
+## Make changes through your AI
+
+To add to or change your memory, ask your AI, as usual. The Reader shows the result as soon as it's published. To see the same pages on a computer, the console at `https://app.telekin.ai` has **Browse**, **Recent changes** and **Search** too.

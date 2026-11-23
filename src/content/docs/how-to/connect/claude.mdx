@@ -23,7 +23,7 @@ Claude signs in in your browser with your Telekin account, so there's nothing to
 2. Click **+ Add**, then **Add custom connector**.
 3. Name it `Telekin`, paste your Telekin address with `/mcp` on the end as the **Server URL**, and click **Continue**. If you're asked how to authenticate, choose **OAuth** (a way of signing in through a page in your browser; there's no password to paste). Leave any client ID or client secret fields empty.
 4. Claude opens Telekin's page in your browser. If you're not signed in, sign in with your Telekin account first.
-5. The page, **Allow access?**, names the app that's connecting. Tick each memory Claude may use (Telekin's screens call memories catalogs), and choose **read** or **write** for each; choose **write** if you want Claude to save what it learns. Pick a **Default catalog**, the memory it uses when it doesn't name one, and choose **Approve**. Your browser returns to Claude, now connected. (**Deny** connects nothing.)
+5. The page, **Allow access?**, names the app that's connecting and says what **Approve** gives it. With one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default catalog, so Claude can save what it learns. Choose **Approve**. With more than one memory, the choices start open under **Advanced Options**: tick each memory Claude may use, choose **read** or **write** for each, pick a **Default catalog** (the memory it uses when it doesn't name one), then **Approve**. Your browser returns to Claude, now connected. (**Deny** connects nothing.)
 6. In a chat, click **+**, then **Connectors**, and make sure `Telekin` is on.
 
 </Steps>
@@ -33,7 +33,7 @@ Claude Desktop uses the same connectors and the same settings page. If the sign-
 A few things worth knowing:
 
 - Free plans allow one custom connector.
-- Once connected, Claude stays connected on its own as long as you use it regularly.
+- Once connected, Claude stays connected on its own as long as you use it at least once every 30 days. After 30 days unused, Telekin disconnects it, and you connect it again the same way.
 - On Team and Enterprise plans, a connector an owner adds to the organization connects everyone through one sign-in, so everyone would see and change the same memory. Don't add Telekin that way. Add it as your own connector instead: each person signs in with their own Telekin account. To share a memory with your team, use a Telekin team, which keeps each person's changes under their own name (see the [FAQ](/faq/)).
 - Claude connects from Anthropic's servers, so the server URL must be reachable from the public internet.
 
@@ -49,4 +49,4 @@ If the connector won't connect, check that the URL ends in `/mcp`. If signing in
 
 Go to **Customize, then Connectors**, open `Telekin` and remove it. Nothing is deleted from your memory; it just stops being connected to Claude. You can also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the Claude connection, then **Revoke**. To connect again later, add the connector again and approve it.
 
-<LastChecked date="2026-11-12" />
+<LastChecked date="2026-11-23" />
