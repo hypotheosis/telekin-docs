@@ -6,7 +6,6 @@ sidebar:
 ---
 
 import { Steps } from '@astrojs/starlight/components';
-import Waitlist from '../../../components/Waitlist.astro';
 import AgentPrompt from '../../../components/AgentPrompt.astro';
 import firstSetup from '../../../prompts/first-setup.txt?raw';
 
@@ -14,9 +13,7 @@ This walks you through the core Telekin workflow. Your AI will have written down
 
 ## Set up your account
 
-You'll need a Telekin account. You should have gotten an invite email with a signup link. [Set up your account](/start/set-up-your-account/) walks you through initial signup.
-
-<Waitlist />
+You'll need a Telekin account. [Sign up](https://join.telekin.ai/signup) to start your 30-day trial, then [Set up your account](/start/set-up-your-account/) walks you through the setup email.
 
 <AgentPrompt prompt={firstSetup}>
 Short on time? Once you have your account, start a new chat with your AI and give it this prompt. It walks you through connecting Telekin, checks the connection, and runs the interview, one step at a time.
