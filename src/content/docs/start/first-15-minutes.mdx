@@ -31,12 +31,14 @@ This page uses Claude on the web (claude.ai) because it doesn't need a terminal.
 1. Go to **Customize, then Connectors** (claude.ai/customize/connectors).
 2. Click **+ Add**, then **Add custom connector**.
 3. Name it `Telekin`, paste `https://app.telekin.ai/mcp` as the **Server URL**, and click **Continue**. If you're asked how to authenticate, choose **OAuth**. Leave any client ID or client secret fields empty.
-4. Claude will redirect you to Telekin to authorize its access. Tick your memory (Telekin's screens call it a catalog), choose **write** so Claude can save what it learns, pick the same memory as the **Default catalog**, and choose **Approve**. Your browser returns to Claude, now connected. (**Deny** connects nothing.)
-6. In a chat, click **+**, then **Connectors**, and make sure `Telekin` is on.
+4. Claude sends you to Telekin to approve its access. Sign in if you're asked. The page, **Allow access?**, says what **Approve** gives Claude: with one memory (Telekin's screens call it a catalog), that's **write** access to it, as the default. That's what you want, so choose **Approve**. Your browser returns to Claude, now connected. (**Deny** connects nothing.)
+5. In a chat, click **+**, then **Connectors**, and make sure `Telekin` is on.
 
 </Steps>
 
 You should now see `Telekin` in the connectors list, switched on for that chat.
+
+If you have more than one memory, the choices on **Allow access?** start open, under **Advanced Options**: tick the memory, choose **write**, pick the same memory as the **Default catalog**, then **Approve**.
 
 ## Add one line to your preferences
 

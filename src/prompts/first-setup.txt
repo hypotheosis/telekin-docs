@@ -5,8 +5,9 @@ Guide me one step at a time. After each step, wait for me to say it worked befor
 1. Check where we are. If you already have Telekin's tools (search, list_catalogs, open_changeset), skip to step 4. Otherwise, work out which app you're running in, and ask me if you can't tell.
 
 2. Connect Telekin. Give me this app's steps from {{DOCS}}/how-to/connect/, or from {{DOCS}}/how-to/connect/any-mcp-client/ if my app isn't listed. Don't guess menu names: if you aren't sure, say so and send me to the page.
-   - When Telekin asks me to approve access, I tick my memory (Telekin calls it a catalog), choose write, pick the same memory as the Default catalog, and choose Approve.
-   - If my app needs a key instead of a sign-in, I make one in the Telekin console and type it into the app myself. Never ask me to paste a key or a password into this chat. If you can run commands, show me the command to run myself, with the key left as a placeholder.
+   - Almost every app signs in in my browser. When Telekin asks me to approve access, the page says what Approve grants: with one memory (Telekin calls it a catalog), that's write access to it as the default, and I choose Approve. If I have several memories, I open Advanced Options, tick mine, choose write, pick it as the Default catalog, then Approve.
+   - In apps that sign in only when asked (Claude Code: /mcp then Authenticate; Codex CLI: codex mcp login telekin; Gemini CLI: /mcp auth telekin), tell me that step.
+   - If my app can't sign in in the browser and needs a key, I make one in the Telekin console and type it into the app myself. Never ask me to paste a key or a password into this chat. If you can run commands, show me the command to run myself, with the key left as a placeholder.
 
 3. Load it. Many apps only pick up a new connection in a new chat or session. If you still don't have Telekin's tools, tell me to start a new chat and paste this prompt again.
 

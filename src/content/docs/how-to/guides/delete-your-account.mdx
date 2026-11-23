@@ -1,0 +1,37 @@
+---
+title: Delete your account
+description: Export your memory, have it deleted, then delete your Telekin account from the Account page.
+sidebar:
+  order: 4.8
+---
+
+import { Steps, Aside } from '@astrojs/starlight/components';
+import { CONTACT_URL } from '../../../../site-config.mjs';
+
+You can delete your Telekin account yourself, from the **Account** page in your Telekin console. Deleting it removes your sign-in (password, passkeys), your sessions, every key you made and every app you connected.
+
+<Aside type="caution" title="Your memory comes first">
+Telekin won't delete an account while that account still owns a memory, so that a memory is never left without an owner. Your own memory counts. So, before you delete your account, export your memory if you want a copy, then <a href={CONTACT_URL}>ask us</a> to delete it.
+</Aside>
+
+## Delete it
+
+<Steps>
+
+1. **Keep a copy, if you want one.** In the console, open **Import & export**, pick your memory and choose **Export .tar.gz**. See [Review, undo and export](/how-to/guides/review-undo-export/#export-everything).
+2. **Have your memory deleted.** <a href={CONTACT_URL}>Ask us</a> to delete it. If a memory belongs to a team you share, it stays with the team.
+3. **Delete the account.** In the console, open **Account** and scroll to **Delete your account**. Confirm it's you with your current password, or choose **Confirm with a passkey**. Type your account ID where the page asks, then confirm.
+
+</Steps>
+
+You're signed out, and the sign-in page says **Your account was deleted.** This can't be undone.
+
+## If it's refused
+
+The page says why, and nothing is deleted:
+
+- **Your account still owns a memory.** Do step 2 first.
+- **You're the only owner of a shared team.** Make someone else an owner of the team first, or ask us.
+- **You only sign in through another provider**, with no password or passkey, so the page can't confirm it's you. Set a password or add a passkey on the **Account** page first.
+
+The history of a team's memory keeps the changes you made, under your name as it was written; your account itself is gone.

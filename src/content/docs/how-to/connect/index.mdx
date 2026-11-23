@@ -10,20 +10,22 @@ One short guide per AI app, each showing how to connect that app to your memory.
 
 Every app connects to the same address: `https://app.telekin.ai/mcp`. You'll need your Telekin account first; see [Set up your account](/start/set-up-your-account/).
 
-Apps connect in one of two ways:
+Almost every app now **signs in in the browser**. The app opens Telekin's page, you sign in with your Telekin account and choose **Approve**, and you're sent back, connected. There's no key to copy or paste. You can see and disconnect every app on **My grants** in your Telekin console.
 
-- **Sign in in the browser.** Claude on the web and desktop, and ChatGPT, open Telekin's page in your browser. You sign in with your Telekin account, choose which memories the app may use, and approve. There's nothing to copy or paste.
-- **A key you make.** Developer tools (Claude Code, Cursor, VS Code and the like) send a key with every request. You make one for each tool on your **My keys** page; see [Make a key](/how-to/guides/make-a-key/).
+**A key you make** is still there for the few cases that need one: an app that can't sign in with OAuth, a machine with no browser (a server you reach over SSH, a container), or a script. See [Make a key](/how-to/guides/make-a-key/).
 
 | App | How it connects | Status | Guide |
 | --- | --- | --- | --- |
 | Claude (web and desktop; mobile apps should follow) | Sign in in the browser | Works today | [Connect Claude](/how-to/connect/claude/) |
-| Claude Code | A key you make | Works today | [Connect Claude Code](/how-to/connect/claude-code/), or [enhanced](/how-to/connect/claude-code-enhanced/) |
-| Cursor | One-click install and sign in in the browser, or a key you make | Works today | [Connect Cursor](/how-to/connect/cursor/) |
-| VS Code (GitHub Copilot) | A key you make | Works today | [Connect VS Code](/how-to/connect/vscode/) |
-| Windsurf | A key you make | Works today | [Connect Windsurf](/how-to/connect/windsurf/) |
-| OpenAI Codex CLI | A key you make | Works today | [Connect Codex CLI](/how-to/connect/codex-cli/) |
-| Gemini CLI | A key you make | Works today | [Connect Gemini CLI](/how-to/connect/gemini-cli/) |
-| Cline | A key you make | Works today | [Connect Cline](/how-to/connect/cline/) |
+| Claude Code | Sign in in the browser, or a key | Works today | [Connect Claude Code](/how-to/connect/claude-code/), or [enhanced](/how-to/connect/claude-code-enhanced/) |
+| Cursor | One-click install and sign in in the browser, or a key | Works today | [Connect Cursor](/how-to/connect/cursor/) |
+| VS Code (GitHub Copilot) | Sign in in the browser, or a key | Works today | [Connect VS Code](/how-to/connect/vscode/) |
+| Windsurf | Sign in in the browser, or a key | Works today | [Connect Windsurf](/how-to/connect/windsurf/) |
+| OpenAI Codex CLI | Sign in in the browser, or a key | Works today | [Connect Codex CLI](/how-to/connect/codex-cli/) |
+| Gemini CLI | Sign in in the browser, or a key | Works today | [Connect Gemini CLI](/how-to/connect/gemini-cli/) |
+| Cline | A key (the Cline command line can sign in in the browser) | Works today | [Connect Cline](/how-to/connect/cline/) |
+| Zed | Sign in in the browser | Should work | [Connect Zed](/how-to/connect/zed/) |
 | ChatGPT | Sign in in the browser | Works today | [Connect ChatGPT](/how-to/connect/chatgpt/) |
 | Any other app | Either, depending on the app | Maybe | [What an app needs](/how-to/connect/any-mcp-client/) |
+
+To read your memory yourself on your phone, you don't need an AI app at all: see [Read your memory on your phone](/how-to/guides/read-on-your-phone/).

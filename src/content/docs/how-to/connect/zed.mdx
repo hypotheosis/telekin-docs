@@ -1,0 +1,42 @@
+---
+title: Connect Zed
+description: Add Telekin to Zed as a remote MCP server and sign in in your browser.
+sidebar:
+  order: 15
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import LastChecked from '../../../../components/LastChecked.astro';
+import Waitlist from '../../../../components/Waitlist.astro';
+import { CONTACT_URL } from '../../../../site-config.mjs';
+
+You'll need: your Telekin account ([Set up your account](/start/set-up-your-account/)).
+
+<Waitlist />
+
+Zed signs in to remote MCP servers with OAuth, so it signs in in your browser with your Telekin account and there's no key to copy or paste.
+
+## Add the server
+
+<Steps>
+
+1. In Zed, open **Settings**, then **AI**, then **MCP Servers**.
+2. Choose **Add Server**, then **Add Remote Server**.
+3. Name it `telekin` and enter `https://app.telekin.ai/mcp` as the URL. Zed writes an entry with just that `url` to its settings. Don't add an `Authorization` header.
+4. Zed asks you to authenticate and opens Telekin's page in your browser. If you're not signed in to Telekin, sign in. The page, **Allow access?**, says what **Approve** gives Zed: with one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default. Choose **Approve**. With more than one memory, choose under **Advanced Options** first. (**Deny** connects nothing.)
+
+</Steps>
+
+Zed asks you to confirm tool actions by default, so expect it to ask before Telekin saves anything.
+
+## Check it works
+
+In Zed's agent panel, ask: **"What tools do you have from Telekin?"** You should see a list. Then ask **"What do you know about me?"**; on an empty memory it will say there's nothing yet.
+
+If it won't connect, check that the URL ends in `/mcp`. If you don't see a sign-in prompt, <a href={CONTACT_URL}>tell us</a> what Zed showed.
+
+## Undo it
+
+Remove `telekin` from Zed's MCP servers. To disconnect it from Telekin's side, open **My grants** in your Telekin console, choose the Zed connection, then **Revoke**.
+
+<LastChecked date="2026-11-23" />

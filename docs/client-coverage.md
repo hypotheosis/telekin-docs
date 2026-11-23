@@ -336,3 +336,19 @@ Source: https://lmstudio.ai/docs/app/mcp (checked 2026-11-12)
 7. Cursor, Windsurf, Codex, Gemini, Cline: write-tool and plan-limit statements not found on the fetched pages; the setup pages should say "tool calls ask for your approval" only where docs said so (Claude, VS Code, ChatGPT, Zed).
 8. Zed (transport), Continue (header placement), JetBrains (headers), LM Studio (transport): see sections above; none can go on the site yet.
 9. ChatGPT plan availability for custom MCP servers.
+
+## OAuth recheck (2026-11-23)
+
+Telekin (okf-mcp, prod v0.28.0) supports OAuth with dynamic client registration, Client ID Metadata Documents and loopback redirects on any port, so every client below that supports OAuth for remote servers signs in in the browser with no key. Checked against vendor docs on 2026-11-23; the Connect pages now lead with sign-in and keep a key as the fallback.
+
+| Client | OAuth for remote HTTP servers | How sign-in starts | Docs URL |
+|---|---|---|---|
+| Claude Code | Yes | `claude mcp add --transport http <name> <url>`, then `/mcp` > Authenticate or `claude mcp login <name>`; `claude mcp logout <name>` signs out. An `Authorization` header disables OAuth | https://code.claude.com/docs/en/mcp |
+| VS Code (Copilot) | Yes (DCR) | Server entry with `"type": "http"` and `url` only; VS Code prompts, or Authenticate in server actions. Sign-out path in current docs: unconfirmed | https://code.visualstudio.com/docs/agents/reference/mcp-configuration |
+| Windsurf | Yes ("Cascade also supports OAuth for remote servers") | `serverUrl` only; exact trigger and sign-out unconfirmed | https://docs.devin.ai/windsurf/plugins/cascade/mcp |
+| Codex CLI | Yes, no flag needed | `codex mcp add <name> --url <url>`, `codex mcp login <name>` (`--no-browser`), `codex mcp logout <name>` | https://learn.chatgpt.com/docs/extend/mcp?surface=cli |
+| Gemini CLI | Yes (discovery on 401, DCR) | `httpUrl` only, then `/mcp auth <name>`; needs a local browser; sign-out undocumented | https://geminicli.com/docs/tools/mcp-server/ |
+| Cline | CLI only confirmed | `cline mcp` > Authorize OAuth; extension flow undocumented (key stays the primary route) | https://docs.cline.bot/mcp/connecting-to-a-remote-server |
+| Cursor | Yes | `url` only (desktop redirect `http://localhost:8787/callback`) | https://cursor.com/docs/context/mcp |
+| Zed | Yes | Add Remote Server with `url` only; Zed prompts for the MCP OAuth flow | https://zed.dev/docs/ai/mcp |
+| JetBrains AI Assistant, Continue, LM Studio | Remote yes, OAuth unconfirmed | Still left out | see the table above |

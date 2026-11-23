@@ -26,11 +26,11 @@ Custom MCP servers are added in ChatGPT on the web. Menu names change, so look f
 3. For authentication, choose **OAuth** (a way of signing in through a page in your browser; there's no password to paste). Leave any client ID or client secret fields empty.
 4. Create it, then install it.
 5. ChatGPT opens Telekin's page in your browser. If you're not signed in, sign in with your Telekin account first.
-6. The page, **Allow access?**, names the app that's connecting. Tick each memory ChatGPT may use (Telekin's screens call memories catalogs), and choose **read** or **write** for each; choose **write** if you want ChatGPT to save what it learns. Pick a **Default catalog**, the memory it uses when it doesn't name one, and choose **Approve**. Your browser returns to ChatGPT, now connected. (**Deny** connects nothing.)
+6. The page, **Allow access?**, names the app that's connecting and says what **Approve** gives it. With one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default catalog, so ChatGPT can save what it learns. Choose **Approve**. With more than one memory, the choices start open under **Advanced Options**: tick each memory ChatGPT may use, choose **read** or **write** for each, pick a **Default catalog** (the memory it uses when it doesn't name one), then **Approve**. Your browser returns to ChatGPT, now connected. (**Deny** connects nothing.)
 
 </Steps>
 
-Once connected, ChatGPT stays connected on its own as long as you use it regularly. If the sign-in page expires before you finish, see [Troubleshoot](/how-to/guides/troubleshoot/).
+Once connected, ChatGPT stays connected on its own as long as you use it at least once every 30 days. After 30 days unused, Telekin disconnects it, and you connect it again the same way. If the sign-in page expires before you finish, see [Troubleshoot](/how-to/guides/troubleshoot/).
 
 Two things may get in your way. Which ChatGPT plans include custom MCP servers isn't confirmed, and if you're in a workspace, an admin can restrict adding them.
 
@@ -46,4 +46,4 @@ If it won't connect, check that the URL ends in `/mcp`. If signing in or approvi
 
 Remove the Telekin server from the same place in ChatGPT where you added it. Nothing is deleted from your memory; it just stops being connected to ChatGPT. You can also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the ChatGPT connection, then **Revoke**. To connect again later, install it again and approve it.
 
-<LastChecked date="2026-11-12" />
+<LastChecked date="2026-11-23" />
