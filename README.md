@@ -28,4 +28,4 @@ npm run check:testers   # the site must build without the tester section
 Client setup pages must carry `<LastChecked date="YYYY-MM-DD" />`, checked
 against the client's current official docs.
 
-The site URL and waitlist link live in `src/site-config.mjs`.
+The site URL and feedback link live in `src/site-config.mjs`.
