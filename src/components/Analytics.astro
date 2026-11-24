@@ -1,0 +1,86 @@
+---
+// HeyCatch analytics and its consent banner, on every page (from Footer.astro).
+// Same setup as telekin.ai (the telekin-site repo). The Worker
+// (worker/index.mjs) sets <html data-consent> from the visitor's country:
+// - "required" (EU, EEA, UK, Switzerland, or unknown): nothing is captured or
+//   stored until the visitor presses Accept;
+// - "implied" (elsewhere): captured unless the visitor declines here.
+// Global Privacy Control or Do Not Track turns analytics off everywhere, even
+// after Accept. The decision itself is src/lib/consent.mjs (unit-tested).
+// The visitor's answer is kept in localStorage under telekin-analytics (per
+// site, so docs.telekin.ai asks separately from telekin.ai).
+// Without JavaScript nothing runs and the banner stays hidden. The footer's
+// "Analytics choices" link reopens the banner.
+---
+<aside class="consent" data-consent-banner hidden aria-label="Analytics choice">
+  <p>
+    <span data-consent-ask>Can we count your visit? We use HeyCatch analytics to see which pages people read. It stores an ID in your browser.</span>
+    <span data-consent-signal hidden>Your browser asks sites not to track you, so analytics is off on this site.</span>{' '}
+    <a href="https://telekin.ai/privacy/#cookies-and-analytics">Privacy policy</a>
+  </p>
+  <div class="actions" data-consent-actions>
+    <button type="button" class="yes" data-consent-choice="yes">Accept</button>
+    <button type="button" class="no" data-consent-choice="no">Decline</button>
+  </div>
+</aside>
+<style>
+  .consent {
+    position: fixed; z-index: 50; left: 1rem; right: 1rem; bottom: 1rem; margin: 0 auto; max-width: 40rem;
+    display: flex; flex-wrap: wrap; align-items: center; gap: .5rem 1rem; padding: .75rem 1rem;
+    background: var(--sl-color-bg-nav); color: var(--sl-color-gray-2); border: 1px solid var(--sl-color-hairline-shade);
+    border-radius: .5rem; box-shadow: var(--sl-shadow-lg); font-size: var(--sl-text-sm); line-height: 1.4;
+  }
+  .consent[hidden], .consent [hidden] { display: none; }
+  .consent p { margin: 0; flex: 1 1 16rem; }
+  .consent a { color: var(--sl-color-gray-2); white-space: nowrap; }
+  .actions { display: flex; gap: .5rem; }
+  .actions button {
+    min-height: 44px; padding: 0 1rem; border-radius: 999px; font: inherit; font-weight: 600; cursor: pointer;
+    border: 1px solid var(--sl-color-text-accent);
+  }
+  .actions .yes { background: var(--sl-color-text-accent); color: var(--sl-color-black); }
+  .actions .no { background: transparent; color: var(--sl-color-text-accent); }
+</style>
+<script>
+  import { analytics } from '@heycatch/sdk';
+  import { analyticsAllowed, bannerOpensOnLoad } from '../lib/consent.mjs';
+
+  const KEY = 'telekin-analytics';
+  const read = () => { try { return localStorage.getItem(KEY); } catch { return null; } };
+  const write = (v: string) => { try { localStorage.setItem(KEY, v); } catch { /* private mode: asked again next page */ } };
+
+  const answer = read(); // 'yes', 'no' or null (not asked yet)
+  const mustAsk = document.documentElement.dataset.consent !== 'implied';
+  const nav = navigator as Navigator & { globalPrivacyControl?: boolean };
+  const signalsNo = nav.globalPrivacyControl === true || nav.doNotTrack === '1';
+  const state = { answer, mustAsk, signalsNo };
+
+  analytics.init({
+    projectKey: 'hck_pk_mtY07dwg6PARgjCHhHsSLSNgI3dudUW8',
+    install: { framework: 'astro', frameworkVersion: '7', agent: 'claude-code' },
+    site: 'landing',
+    requestBatching: false,
+    optOutCapturingByDefault: !analyticsAllowed(state),
+  });
+
+  const banner = document.querySelector<HTMLElement>('[data-consent-banner]');
+  if (banner) {
+    if (signalsNo) {
+      // Accept would change nothing: say why instead of asking.
+      banner.querySelector<HTMLElement>('[data-consent-ask]')!.hidden = true;
+      banner.querySelector<HTMLElement>('[data-consent-actions]')!.hidden = true;
+      banner.querySelector<HTMLElement>('[data-consent-signal]')!.hidden = false;
+    }
+    if (bannerOpensOnLoad(state)) banner.hidden = false;
+    banner.addEventListener('click', (e) => {
+      const choice = (e.target as HTMLElement).closest<HTMLElement>('[data-consent-choice]')?.dataset.consentChoice;
+      if (!choice) return;
+      write(choice);
+      if (analyticsAllowed({ ...state, answer: choice })) analytics.optInCapturing(); else analytics.optOutCapturing();
+      banner.hidden = true;
+    });
+    document.querySelectorAll<HTMLAnchorElement>('a[data-consent-open]').forEach((a) => {
+      a.addEventListener('click', (e) => { e.preventDefault(); banner.hidden = false; banner.querySelector<HTMLElement>('button:not([hidden] *), a')?.focus(); });
+    });
+  }
+</script>
