@@ -1,0 +1,26 @@
+---
+// Replaces Starlight's Footer, which every page renders (docs, splash and 404),
+// to add HeyCatch analytics, its consent banner, and an "Analytics choices"
+// link that reopens the banner.
+import Default from '@astrojs/starlight/components/Footer.astro';
+import Analytics from './Analytics.astro';
+---
+<Default />
+<p class="analytics-choices">
+  <a href="https://telekin.ai/privacy/#cookies-and-analytics" data-consent-open>Analytics choices</a>
+</p>
+<Analytics />
+
+<style>
+  .analytics-choices {
+    margin: 0;
+    text-align: center;
+    font-size: var(--sl-text-xs);
+  }
+  .analytics-choices a {
+    color: var(--sl-color-gray-3);
+  }
+  .analytics-choices a:hover {
+    color: var(--sl-color-white);
+  }
+</style>

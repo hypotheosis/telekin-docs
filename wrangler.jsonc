@@ -2,12 +2,19 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "telekin-docs",
   "compatibility_date": "2026-11-01",
+  // A small Worker in front of the static site: HeyCatch short links, and the
+  // visitor's country for the analytics consent banner (worker/index.mjs).
+  "main": "worker/index.mjs",
   "assets": {
     "directory": "./dist",
-    "not_found_handling": "404-page"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page",
+    // The Worker runs for pages and short links; scripts, styles, the search
+    // index and the icon are served straight from the assets.
+    "run_worker_first": ["/*", "!/_astro/*", "!/pagefind/*", "!/favicon.svg", "!/robots.txt"]
   },
   // Workers Builds runs `wrangler preview` for non-production branches, and that
   // command needs this block to exist. It can stay empty: this site has no
-  // bindings or vars, and assets stay at the top level.
+  // bindings or vars beyond ASSETS.
   "previews": {}
 }
