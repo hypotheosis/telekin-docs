@@ -67,4 +67,4 @@ Most people don't need a catalog header at all, because Telekin already uses you
 
 <a href={CONTACT_URL}>Send us a message</a> with a screenshot, or use [Send feedback](/feedback/). Leave any key out of the screenshot.
 
-If the error shows a **trace id** (a long string of letters and numbers, shown after "Trace id:" in the console, or quoted by your AI when a Telekin tool fails), include it. It's what lets us find the exact request that failed. Developers can also find it in the `X-Trace-Id` header that every Telekin response carries.
+If the error shows a **trace id** (a long string of letters and numbers, shown after "Trace id:" in the console, or quoted by your AI when a Telekin tool fails with an internal error), include it. It's what lets us find the exact request that failed. Developers can also find it in the `X-Trace-Id` header on Telekin's API and console responses (not on static files such as scripts and images).
