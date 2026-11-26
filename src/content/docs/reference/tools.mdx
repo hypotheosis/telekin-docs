@@ -69,7 +69,8 @@ Nothing your AI writes is visible until it publishes. Until then it sits in a dr
 
 | Tool | What it does for you |
 |---|---|
-| `history` | Lists every past version of a document, with the message, who made it (the name tied to your key or connection) and when. |
+| `history` | Lists every past version of a document, with the message, when, and who made it: the person whose account made the change, and the name tied to their key or connection. It can show only one person's changes, or only changes since a given time. |
+| `recent_changes` | Lists everything published across a memory, newest first, with the same details. It can narrow that to one person, or to changes since a given time. |
 | `revert` | Brings back an earlier version, as a new draft that you publish like any other change. |
 
 Because every publish is kept in the history, an unwanted change can be undone. See [Review, undo and export](/how-to/guides/review-undo-export/).
@@ -87,3 +88,12 @@ Tools whose names start with `maintenance_` are for Telekin's automated catalog 
 ## How tools are used
 
 Whether your AI app asks you before each tool runs depends on the app. Many apps ask the first time and let you choose "always allow".
+
+Telekin tells your app what kind each tool is, and some apps use that to decide when to ask:
+
+- **Reading tools**, such as `search`, `get_concept`, `history` and `recent_changes`, only look.
+- **Tools that add something**, such as `open_changeset`, `create_concept`, `add_source`, `log` and `question`, add to a draft without changing what's already there.
+- **Tools that change or remove existing content** are marked that way: `edit_document`, `replace_body`, `set_frontmatter`, `stamp`, `review`, `index`, `repair_indexes`, `remove_source`, `unquestion`, `revert`, `move_concept` and `split_concept`, as well as `delete_concept`, `discard` and `publish`. An app that asks before such tools will ask for these.
+- **`send_feedback`** is marked as reaching outside Telekin, since it sends your message to a form service.
+
+Apart from `publish`, and `discard` (which throws away part of a draft), the tools listed above as changing content only change your draft. Nothing in your memory changes until your AI publishes.
