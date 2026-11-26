@@ -1,29 +1,15 @@
 // @ts-check
-import { existsSync, readFileSync, writeFileSync } from 'node:fs';
-import { fileURLToPath } from 'node:url';
+import { existsSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import sitemap from '@astrojs/sitemap';
 import starlightLinksValidator from 'starlight-links-validator';
 import { FEEDBACK_URL, SITE_URL } from './src/site-config.mjs';
-import { walk } from './scripts/lib.mjs';
 
-// NO SITEMAP until launch. Starlight adds @astrojs/sitemap itself unless an
-// integration with that name is present, so this no-op takes its place, and
-// the build-done hook strips the <link rel="sitemap"> tag Starlight adds.
-// To undo at launch: delete this constant and remove it from `integrations`.
-const noSitemap = {
-  name: '@astrojs/sitemap',
-  hooks: {
-    'astro:build:done': ({ dir }) => {
-      const root = fileURLToPath(dir);
-      for (const file of walk(root, ['.html'])) {
-        const html = readFileSync(file, 'utf8');
-        const out = html.replace(/<link rel="sitemap"[^>]*>/g, '');
-        if (out !== html) writeFileSync(file, out);
-      }
-    },
-  },
-};
+// The sitemap lists every page except the tester section, which stays out of
+// search (its pages carry a robots noindex meta in their frontmatter). Adding
+// @astrojs/sitemap here stops Starlight adding its own, unfiltered one.
+const sitemapIntegration = sitemap({ filter: (page) => !new URL(page).pathname.startsWith('/testers/') });
 
 // The tester section is deleted at launch; the sidebar must not break when it is.
 const hasTesters = existsSync('./src/content/docs/testers');
@@ -31,7 +17,7 @@ const hasTesters = existsSync('./src/content/docs/testers');
 export default defineConfig({
   site: SITE_URL,
   integrations: [
-    noSitemap,
+    sitemapIntegration,
     starlight({
       title: 'Telekin',
       description: 'A memory your AIs share, and you own.',
@@ -42,9 +28,6 @@ export default defineConfig({
         // Adds HeyCatch analytics and its consent banner to every page.
         Footer: './src/components/Footer.astro',
       },
-      head: [
-        { tag: 'meta', attrs: { name: 'robots', content: 'noindex, nofollow' } },
-      ],
       sidebar: [
         {
           label: 'Start here',

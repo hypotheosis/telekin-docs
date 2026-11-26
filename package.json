@@ -9,11 +9,12 @@
     "preview": "astro preview",
     "astro": "astro",
     "test": "node --test scripts/*.test.mjs src/lib/*.test.mjs worker/*.test.mjs",
-    "check": "node scripts/check-noindex.mjs && node scripts/check-private.mjs && node scripts/check-last-checked.mjs",
+    "check": "node scripts/check-indexing.mjs && node scripts/check-private.mjs && node scripts/check-last-checked.mjs",
     "check:testers": "node scripts/check-testers-removable.mjs",
     "check:consent": "node scripts/consent-browser.mjs"
   },
   "dependencies": {
+    "@astrojs/sitemap": "3.7.4",
     "@astrojs/starlight": "0.42.10",
     "@heycatch/sdk": "0.8.5",
     "astro": "7.4.11",
