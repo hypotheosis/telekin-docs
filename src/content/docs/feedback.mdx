@@ -10,3 +10,5 @@ Something broken, confusing or missing? Something you like? Tell us here. Every 
 <FeedbackForm />
 
 You can also choose **Send feedback** in your Telekin console, or ask your AI to send it: say "Send feedback to Telekin that..." and it uses Telekin's `send_feedback` tool.
+
+When a Telekin tool fails with an internal error, the error tells your AI it can report the problem with `send_feedback`, quoting the error's trace id so we can find the failing request. So your AI may offer to send a report, or mention that it can, without being asked. If you'd rather it didn't, just tell it not to.
