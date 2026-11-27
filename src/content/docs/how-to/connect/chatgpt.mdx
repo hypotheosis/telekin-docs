@@ -1,6 +1,6 @@
 ---
 title: Connect ChatGPT
-description: Add Telekin to ChatGPT as a custom MCP server and sign in with your Telekin account, so ChatGPT can remember things between chats.
+description: Install Telekin from the ChatGPT plugin directory and sign in with your Telekin account, so ChatGPT can remember things between chats.
 sidebar:
   order: 5
 ---
@@ -8,28 +8,39 @@ sidebar:
 import { Steps } from '@astrojs/starlight/components';
 import LastChecked from '../../../../components/LastChecked.astro';
 
-You'll need: your Telekin address with `/mcp` at the end, and your Telekin account ([Set up your account](/start/set-up-your-account/)).
+You'll need: your Telekin account ([Set up your account](/start/set-up-your-account/)).
 
-ChatGPT signs in in your browser with your Telekin account, so there's nothing to copy or paste. You choose which memories it may use, and you can disconnect it at any time from **My grants** in your Telekin console.
+Telekin is in the ChatGPT plugin directory, so you can install it directly. ChatGPT signs in in your browser with your Telekin account, so there's nothing to copy or paste. You choose which memories it may use, and you can disconnect it at any time from **My grants** in your Telekin console.
 
-## Add the server
+## Install Telekin
 
-Custom MCP servers are added in ChatGPT on the web. Menu names change, so look for them rather than expecting these exact words.
+Menu names in ChatGPT change, so look for them rather than expecting these exact words.
 
 <Steps>
 
-1. In ChatGPT on the web, look for **Plugins** (or a similar place for custom MCP servers).
-2. Create a new one. Give it a name such as `Telekin`, an optional description, and paste your Telekin address with `/mcp` on the end as the **Server URL**.
-3. For authentication, choose **OAuth** (a way of signing in through a page in your browser; there's no password to paste). Leave any client ID or client secret fields empty.
-4. Create it, then install it.
-5. ChatGPT opens Telekin's page in your browser. If you're not signed in, sign in with your Telekin account first.
-6. The page, **Allow access?**, names the app that's connecting and says what **Approve** gives it. With one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default catalog, so ChatGPT can save what it learns. Choose **Approve**. With more than one memory, the choices start open under **Advanced Options**: tick each memory ChatGPT may use, choose **read** or **write** for each, pick a **Default catalog** (the memory it uses when it doesn't name one), then **Approve**. Your browser returns to ChatGPT, now connected. (**Deny** connects nothing.)
+1. Open [Telekin in the ChatGPT plugin directory](https://chatgpt.com/plugins/plugin_asdk_app_6b07658c61ac81919648bcb19485d68e), or open **Plugins** in ChatGPT and search the directory for `Telekin`.
+2. Choose **Install**. (If the listing shows **Try in chat** instead, Telekin is already installed.)
+3. ChatGPT opens Telekin's page in your browser. If you're not signed in, sign in with your Telekin account first.
+4. The page, **Allow access?**, names the app that's connecting and says what **Approve** gives it. With one memory (Telekin's screens call memories catalogs), that's **write** access to it, as the default catalog, so ChatGPT can save what it learns. Choose **Approve**. With more than one memory, the choices start open under **Advanced Options**: tick each memory ChatGPT may use, choose **read** or **write** for each, pick a **Default catalog** (the memory it uses when it doesn't name one), then **Approve**. Your browser returns to ChatGPT, now connected. (**Deny** connects nothing.)
 
 </Steps>
 
 Once connected, ChatGPT stays connected on its own as long as you use it at least once every 30 days. After 30 days unused, Telekin disconnects it, and you connect it again the same way. If the sign-in page expires before you finish, see [Troubleshoot](/how-to/guides/troubleshoot/).
 
-Two things may get in your way. Which ChatGPT plans include custom MCP servers isn't confirmed, and if you're in a workspace, an admin can restrict adding them.
+If you're in a ChatGPT workspace, an admin can restrict which plugins you may install.
+
+## Add it as a custom MCP server instead
+
+If you can't install from the directory, you can add Telekin yourself, on ChatGPT on the web. Which ChatGPT plans include custom MCP servers isn't confirmed.
+
+<Steps>
+
+1. In ChatGPT on the web, look for **Plugins** (or a similar place for custom MCP servers).
+2. Create a new one. Give it a name such as `Telekin`, an optional description, and paste your Telekin address with `/mcp` on the end (`https://app.telekin.ai/mcp`) as the **Server URL**.
+3. For authentication, choose **OAuth** (a way of signing in through a page in your browser; there's no password to paste). Leave any client ID or client secret fields empty.
+4. Create it, then install it. Then sign in and approve as in steps 3 and 4 [above](#install-telekin).
+
+</Steps>
 
 ## Check it works
 
@@ -41,6 +52,6 @@ If it won't connect, check that the URL ends in `/mcp`. If signing in or approvi
 
 ## Undo it
 
-Remove the Telekin server from the same place in ChatGPT where you added it. Nothing is deleted from your memory; it just stops being connected to ChatGPT. You can also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the ChatGPT connection, then **Revoke**. To connect again later, install it again and approve it.
+Remove Telekin from **Plugins** in ChatGPT, where you installed or added it. Nothing is deleted from your memory; it just stops being connected to ChatGPT. You can also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the ChatGPT connection, then **Revoke**. To connect again later, install it again and approve it.
 
-<LastChecked date="2026-11-23" />
+<LastChecked date="2026-11-27" />
