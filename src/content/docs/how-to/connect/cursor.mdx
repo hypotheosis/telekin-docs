@@ -73,6 +73,10 @@ In a Cursor chat, ask: **"What tools do you have from Telekin?"** You should see
 
 If it won't connect, check that the URL ends in `/mcp`. If you use a key, check that the header value starts with `Bearer ` (with a space). If signing in or approving doesn't work, see [Troubleshoot](/how-to/guides/troubleshoot/).
 
+## Make it use Telekin on its own
+
+To make Cursor check Telekin by itself and save to it by default, add the [text for Cursor](/how-to/guides/use-without-asking/#cursor) to your User Rules.
+
 ## Undo it
 
 Remove `telekin` from Cursor's MCP settings, or delete the `"telekin"` entry from the `mcp.json` file you edited, and restart Cursor. If you signed in in the browser, also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the Cursor connection, then **Revoke**.

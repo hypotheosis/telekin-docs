@@ -13,7 +13,6 @@ npm run dev        # http://localhost:4321
 
 ```bash
 npm run build && npm run check
-npm run check:testers   # the site must build without the tester section
 ```
 
 ## Analytics
@@ -37,9 +36,6 @@ HeyCatch stubbed out locally. It needs Chrome, so it isn't part of the build.
 - `src/content/docs/how-to/`: one task per page
 - `src/content/docs/reference/`: facts to look up
 - `src/content/docs/explanation/`: understanding and background
-- `src/content/docs/testers/`: tester-only pages, kept out of search (noindex,
-  robots.txt and the sitemap) and deleted when the test ends.
-  Nothing outside this folder may link into it.
 
 Client setup pages must carry `<LastChecked date="YYYY-MM-DD" />`, checked
 against the client's current official docs.

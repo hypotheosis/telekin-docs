@@ -60,6 +60,10 @@ In a Cascade chat, ask: **"What tools do you have from Telekin?"** You should se
 
 If it won't connect, check that the URL ends in `/mcp`. With a key, check that the header value starts with `Bearer ` (with a space).
 
+## Make it use Telekin on its own
+
+To make Cascade check Telekin by itself, and save to it instead of its own memories, add the [text for Windsurf](/how-to/guides/use-without-asking/#windsurf) as a global rule.
+
 ## Undo it
 
 Use **Open MCP config file** again, delete the `"telekin"` entry, save, and press refresh. To disconnect it from Telekin's side, open **My grants** in your Telekin console, choose the Windsurf connection, then **Revoke**. If you used a key, revoke it on **My keys**.

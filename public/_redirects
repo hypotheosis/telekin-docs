@@ -1,3 +1,5 @@
-# Old URLs that testers may have bookmarked. Served by Cloudflare Workers static assets.
+# Old URLs people may have bookmarked. Served by Cloudflare Workers static assets.
 /explanation/how-telekin-works/ /explanation/what-is-telekin/ 301
 /explanation/how-telekin-works /explanation/what-is-telekin/ 301
+/testers/* / 301
+/testers / 301

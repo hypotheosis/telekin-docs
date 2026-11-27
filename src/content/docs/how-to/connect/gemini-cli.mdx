@@ -64,6 +64,10 @@ In a Gemini CLI session, ask: **"What tools do you have from Telekin?"** You sho
 
 If it won't connect, check that the URL ends in `/mcp`, and run `/mcp auth telekin` again. With a key, check that the header value starts with `Bearer ` (with a space).
 
+## Make it use Telekin on its own
+
+To make Gemini CLI check Telekin by itself, and save to it instead of `GEMINI.md`, add the [text for Gemini CLI](/how-to/guides/use-without-asking/#gemini-cli) to `~/.gemini/GEMINI.md`.
+
 ## Undo it
 
 Delete the `"telekin"` entry from `~/.gemini/settings.json` (or from the project's `.gemini/settings.json`, if you added it without `--scope user`). To disconnect it from Telekin's side, open **My grants** in your Telekin console, choose the Gemini CLI connection, then **Revoke**. If you used a key, revoke it on **My keys**.

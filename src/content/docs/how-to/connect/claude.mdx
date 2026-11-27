@@ -42,6 +42,10 @@ In a chat with `Telekin` switched on, ask: **"What tools do you have from Teleki
 
 If the connector won't connect, check that the URL ends in `/mcp`. If signing in or approving doesn't work, see [Troubleshoot](/how-to/guides/troubleshoot/). If Claude says it has no tools, make sure the connector is toggled on in this chat (**+**, then **Connectors**).
 
+## Make it use Telekin on its own
+
+Claude doesn't think of Telekin on its own, so this step matters. Add the [text for the Claude apps](/how-to/guides/use-without-asking/#claude-apps) to your instructions in Settings. It tells Claude to use Telekin instead of its built-in memory, to search Telekin first, and to save new things by default and tell you what it saved.
+
 ## Undo it
 
 Go to **Customize, then Connectors**, open `Telekin` and remove it. Nothing is deleted from your memory; it just stops being connected to Claude. You can also disconnect it from Telekin's side: in your Telekin console, open **My grants**, choose the Claude connection, then **Revoke**. To connect again later, add the connector again and approve it.

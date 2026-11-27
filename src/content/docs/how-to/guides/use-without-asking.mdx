@@ -1,26 +1,149 @@
 ---
 title: Get your AI to use Telekin without being asked
-description: Add one line to your AI's custom instructions so it checks Telekin on its own, plus a few habits that help.
+description: Add a few lines to your AI's custom instructions so it uses Telekin as its memory, checks it on its own and saves to it by default, plus a few habits that help.
 sidebar:
   order: 1
 ---
 
-Connecting Telekin gives your AI the tools to use it. It doesn't always think to. This page makes it check Telekin by itself.
+Connecting Telekin gives your AI the tools to use it. It doesn't always think to. This page makes it check Telekin by itself, and save to it.
 
-## Add one line
+## What the instructions say
 
-Add this to your AI's custom instructions:
+Give your AI three instructions, in its custom instructions (or rules, or preferences: each app has its own name for them):
 
-> I have a knowledge catalog (Telekin) connected that holds long-term
-> context about me. Search it before answering whenever I mention a project, system,
-> person or problem, and use what you find openly. When we establish
-> something worth remembering, record it there.
+1. **Telekin is its memory.** If the app has a memory of its own, say to use Telekin instead. Otherwise, when you say "remember this", it may save to the app's memory and not to Telekin.
+2. **Search Telekin first,** before answering from what it already knows or searching the web. Some apps don't pass on the instructions Telekin sends when a chat starts. In those apps, the AI should also call Telekin's `guide` tool before its first search, to read them.
+3. **Save by default, then say what was saved.** The catalog only improves when it grows. If the AI only saves what it judges "worth remembering", it holds back. Saving new things and fixing outdated ones without asking works better. It then tells you what it saved, so you can say "take that out", and every publish can be undone (see [Review, undo and export](/how-to/guides/review-undo-export/)).
 
-Where it goes depends on the app. Menu names move around, so search the app's settings for "preferences" or "rules" if you can't find them:
+Don't tell it to search only "when I mention a project, system or person". The AI reads a list like that as the only times to look.
 
-- **Claude (web and desktop):** your profile's personal preferences, under Settings.
-- **Cursor:** User Rules, under Settings.
-- **Claude Code:** don't use this line. Follow [Connect Claude Code, enhanced](/how-to/connect/claude-code-enhanced/), which sets up the instructions and a startup check for you.
+## Text for your app
+
+Copy the text for your app. Where it goes moves around between app versions. If you can't find the place, search the app's settings for "instructions", "rules" or "preferences".
+
+### Claude apps
+
+For Claude on the web, Claude Desktop and the Claude mobile apps. They don't pass on Telekin's own instructions, and they keep Telekin's tools hidden until Claude decides it needs one. Without this text, Claude often doesn't think of Telekin at all.
+
+**Where it goes:** Settings, then **Your Claude**, then **Instructions** (older versions call it your personal preferences, under your profile). It applies to every chat, on every device you sign in on.
+
+```text
+* My Telekin connector is my knowledge catalog and my memory. Use it instead of Claude's built-in memory.
+* Before answering from what you know or searching the web, search Telekin. Before the first search in a conversation, call its `guide` tool.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+If you named the connector something other than `Telekin`, use that name.
+
+### ChatGPT
+
+ChatGPT passes on Telekin's instructions, so it doesn't need the `guide` step.
+
+**Where it goes:** on the web and in the desktop app, Settings, then **Personalization**, then **Custom instructions** (turn on **Enable customization** if it's off). In the mobile app, Settings, then **Customize ChatGPT**.
+
+```text
+* Telekin is my knowledge catalog and my memory. Use it instead of ChatGPT's memory.
+* Before answering from what you know or searching the web, search Telekin.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### Claude Code
+
+Claude Code passes on Telekin's instructions, so it doesn't need the `guide` step. For the full setup, with a startup reminder of which catalog is yours, follow [Connect Claude Code, enhanced](/how-to/connect/claude-code-enhanced/) instead.
+
+**Where it goes:** the end of `~/.claude/CLAUDE.md`, which Claude Code reads at the start of every session (create it if it doesn't exist).
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory. Use it as your primary memory, ahead of Claude Code's own memory files.
+* Before working on anything that might be in Telekin, search it.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### Cursor
+
+**Where it goes:** Cursor Settings, then **Rules**, under **User Rules**. They apply to every project.
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory.
+* Before answering from what you know or searching the web, search Telekin. Before the first search in a chat, call its `guide` tool.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### VS Code (GitHub Copilot)
+
+**Where it goes:** a user instructions file, which applies in every workspace. Open the Command Palette, run **Chat: Open Customizations**, and choose **+** next to **User** to create one. The file lives at `~/.copilot/copilot-instructions.md`.
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory. Use it instead of Copilot Memory.
+* Before answering from what you know or searching the web, search Telekin. Before the first search in a chat, call its `guide` tool.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### Windsurf
+
+**Where it goes:** a global rule. In Cascade, open **Customizations**, then **Rules**, and add a global rule. Newer versions keep global rules in `~/.devin/global_rules.md`.
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory. Use it instead of Cascade's memories.
+* Before answering from what you know or searching the web, search Telekin. Before the first search in a conversation, call its `guide` tool.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### OpenAI Codex CLI
+
+Codex passes on Telekin's instructions, so it doesn't need the `guide` step.
+
+**Where it goes:** `~/.codex/AGENTS.md` (create it if it doesn't exist). If there's an `AGENTS.override.md` beside it, Codex reads that one instead, so add the text there.
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory. If Codex memories are on, use Telekin instead.
+* Before working on anything that might be in Telekin, search it.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### Gemini CLI
+
+Gemini CLI passes on Telekin's instructions, so it doesn't need the `guide` step.
+
+**Where it goes:** `~/.gemini/GEMINI.md` (create it if it doesn't exist). Run `/memory reload` in a running session to pick up the change.
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory. Save to it instead of using the save_memory tool or GEMINI.md.
+* Before working on anything that might be in Telekin, search it.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### Cline
+
+**Where it goes:** a global rule. Click the scale icon below the chat box, then add a new global rule file. Cline keeps global rules in `~/Documents/Cline/Rules`.
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory.
+* Before working on anything that might be in Telekin, search it. Before the first search in a task, call its `guide` tool.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### Zed
+
+**Where it goes:** your personal `AGENTS.md`, which applies in every project: `~/.config/zed/AGENTS.md` on macOS and Linux, `%APPDATA%\Zed\AGENTS.md` on Windows. (Zed's older Rules Library has been replaced by this file.)
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory.
+* Before working on anything that might be in Telekin, search it. Before the first search in a thread, call its `guide` tool.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+### Any other app
+
+Put this wherever the app keeps instructions that apply to every chat. If the app has a memory of its own, add "Use it instead of" and the name of that memory to the first line. The `guide` step is harmless in an app that already passes on Telekin's instructions; it just costs one extra call.
+
+```text
+* The telekin MCP server is my knowledge catalog and my memory.
+* Before answering from what you know or searching the web, search Telekin. Before the first search in a conversation, call its `guide` tool.
+* The catalog only improves when it grows. Save new things and fix outdated ones by default, without asking, and then tell me what you saved.
+```
+
+If you gave the server another name when you connected it, use that name in place of `telekin`.
 
 ## Habits that help
 
