@@ -20,7 +20,7 @@ When you ask your AI to remember something, Telekin tells it to save it to your 
 | `read_document` | Reads a folder's contents page (`index.md`), the change log (`log.md`) or the catalog's house rules (`AGENTS.md`). |
 | `list_catalogs` | Shows which catalogs your connection can reach, by name and display name, and which one is in use right now. |
 | `whoami` | Says who the AI is acting for: your account, whether it signed in or uses a key, what it can reach, its default catalog, and Telekin's current time. |
-| `cited_by` | Finds the concepts that cite a given source, such as a document or a web page. |
+| `cited_by` | Finds the concepts that cite a given source, such as a document or a web page. Asked with no source, it lists every source the memory cites and how many concepts cite each. |
 
 ## Writing (always as a draft first)
 
@@ -36,7 +36,7 @@ Nothing your AI writes is visible until it publishes. Until then it sits in a dr
 | `add_source` | Records where a fact came from, such as a document or a conversation. |
 | `remove_source` | Removes a recorded source that is no longer cited. |
 | `log` | Adds a dated line to the catalog's change log. |
-| `index` | Lists a concept on its folder's contents page, or describes a folder on its parent's contents page. |
+| `index` | Lists a concept on its folder's contents page, or describes a folder on its parent's contents page. For a concept that's already listed, it changes that listing's one-line summary, for example to replace a placeholder description. |
 | `pending_changes` | Shows exactly what the draft would change, line by line. |
 | `lint` | Checks the draft, or the whole catalog, for mistakes such as broken links. |
 | `publish` | Makes the draft real, with a short message saying what changed. |
@@ -69,9 +69,9 @@ Nothing your AI writes is visible until it publishes. Until then it sits in a dr
 
 | Tool | What it does for you |
 |---|---|
-| `history` | Lists every past version of a document, with the message, when, and who made it: the person whose account made the change, and the name tied to their key or connection. It can show only one person's changes, or only changes since a given time. |
+| `history` | Lists every past version of a document, with the message, when, and who made it: the person whose account made the change, and the name tied to their key or connection. It can show only one person's changes, or only changes since a given time. It also gives the document's latest version number, which `revert` can check against. |
 | `recent_changes` | Lists everything published across a memory, newest first, with the same details. It can narrow that to one person, or to changes since a given time. |
-| `revert` | Brings back an earlier version, as a new draft that you publish like any other change. |
+| `revert` | Brings back an earlier version, as a new draft that you publish like any other change. It can be told which version you last saw; if someone has published the document since, it refuses and changes nothing. This also guards bringing back a deleted document. |
 
 Because every publish is kept in the history, an unwanted change can be undone. See [Review, undo and export](/how-to/guides/review-undo-export/).
 
