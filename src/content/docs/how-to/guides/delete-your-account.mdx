@@ -23,7 +23,7 @@ Telekin won't delete an account while that account still owns a memory, so that 
 3. **Delete the account.** In the console, open **Account** and scroll to **Delete your account**. Confirm it's you in one of three ways:
    - type your current password and choose **Delete my account**;
    - choose **Confirm with a passkey and delete my account**;
-   - if you sign in through another provider, choose **Re-authenticate with** *provider* **to delete my account**. The provider asks you to sign in again, then sends you back to the **Account** page, which now shows **Delete my account**. Choose it within a few minutes.
+   - if you sign in through another provider, choose **Re-authenticate with** *provider* **to delete my account**. The provider asks you to sign in again, then sends you back to the **Account** page, which checks with Telekin that the provider confirmed a fresh sign-in. If it did, the page shows **Delete my account**; choose it within a few minutes. If it didn't, the page says so straight away and offers **Try again** instead (see [below](#if-its-refused)).
 
    Type your account ID where the page asks, then confirm.
 
@@ -33,11 +33,11 @@ You're signed out, and the sign-in page says **Your account was deleted.** This 
 
 ## If it's refused
 
-The page says why, and nothing is deleted:
+The page says why, and nothing is deleted. Most of these come up when you choose to delete; a provider that didn't confirm a fresh sign-in is reported as soon as you're back on the **Account** page:
 
 - **Your account still owns a memory.** Do step 2 first.
 - **You're the only owner of a shared team.** Make someone else an owner of the team first, or ask us.
-- **The provider didn't confirm a fresh sign-in.** Re-authenticating counts only if you really signed in at the provider just now; some providers skip that when you're already signed in there. Sign out of the provider, sign back in, then choose **Try again: re-authenticate with** *provider*.
+- **The provider didn't confirm a fresh sign-in.** Re-authenticating counts only if you really signed in at the provider just now; some providers skip that when you're already signed in there. The page shows this when the provider sends you back, before offering **Delete my account**. Sign out of the provider, sign back in, then choose **Try again: re-authenticate with** *provider*.
 - **The page has no way to confirm it's you**: no password, no passkey and no linked sign-in account it can use. The page says to set a password, add a passkey or link a sign-in account first; do one of those on the **Account** page, then come back.
 
 The history of a team's memory keeps the changes you made, under your name as it was written; your account itself is gone.
