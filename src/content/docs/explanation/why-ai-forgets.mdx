@@ -9,7 +9,7 @@ You connected Telekin, you asked a question it should have known, and your AI an
 
 ## Why AIs don't always check
 
-Connecting Telekin gives your AI a set of tools. An AI only uses a tool when something prompts it to. Nothing in a fresh chat says "you have a memory, look in it first", so unless your question or your settings point that way, the AI answers from what it already knows and never opens the tool.
+Connecting Telekin gives your AI a set of tools. An AI only uses a tool when something prompts it to. Telekin's tool descriptions tell the AI to look when you ask what it remembers or refer to something you told it before, but not every app follows tool descriptions closely, and a question that doesn't sound like either gives it no reason to look. Unless your question or your settings point that way, the AI may answer from what it already knows and never open the tool.
 
 Long chats make it worse, since instructions given early can fade as the conversation grows. This is especially common with longer context windows.
 
@@ -20,6 +20,6 @@ Long chats make it worse, since instructions given early can fade as the convers
 - **Ask it to check.** Telling it to check Telekin before answering works every time — the [Prompt library](/reference/prompt-library/#check-before-answering) has a ready prompt.
 - **Hooks.** Claude Code can run a small startup script that reminds it, at the start of every session, which catalog is yours. Together with instructions in its global `CLAUDE.md` file, it makes Claude Code check Telekin on its own. See [Connect Claude Code, enhanced](/how-to/connect/claude-code-enhanced/).
 
-## Planned
+## What Telekin does on its side
 
-Improvements on the Telekin server side, to make AIs more likely to check without help, are planned. There is no date for them yet. Until then, the steps above are the reliable ones.
+Telekin's tool descriptions now steer the AI on their own: they tell it to search your memory when you ask what it remembers or refer to something you told it before, and to save things worth keeping that you share, without being asked, telling you what it saved. Apps that follow tool descriptions closely do more of this without help. Not every app does, so the steps above stay the reliable way.
