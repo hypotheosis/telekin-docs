@@ -1,18 +1,13 @@
 // @ts-check
-import { existsSync } from 'node:fs';
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
 import sitemap from '@astrojs/sitemap';
 import starlightLinksValidator from 'starlight-links-validator';
 import { FEEDBACK_URL, SITE_URL } from './src/site-config.mjs';
 
-// The sitemap lists every page except the tester section, which stays out of
-// search (its pages carry a robots noindex meta in their frontmatter). Adding
-// @astrojs/sitemap here stops Starlight adding its own, unfiltered one.
-const sitemapIntegration = sitemap({ filter: (page) => !new URL(page).pathname.startsWith('/testers/') });
-
-// The tester section is deleted at launch; the sidebar must not break when it is.
-const hasTesters = existsSync('./src/content/docs/testers');
+// The sitemap lists every page. Adding @astrojs/sitemap here stops Starlight
+// adding its own.
+const sitemapIntegration = sitemap();
 
 export default defineConfig({
   site: SITE_URL,
@@ -52,7 +47,6 @@ export default defineConfig({
         { label: 'Reference', items: [{ autogenerate: { directory: 'reference' } }] },
         { label: 'Explanation', items: [{ autogenerate: { directory: 'explanation' } }] },
         { label: 'FAQ', link: '/faq/' },
-        ...(hasTesters ? [{ label: 'For testers', items: [{ autogenerate: { directory: 'testers' } }] }] : []),
         { label: 'Send feedback', link: FEEDBACK_URL },
       ],
     }),

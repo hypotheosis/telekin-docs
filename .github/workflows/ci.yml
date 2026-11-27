@@ -25,4 +25,3 @@ jobs:
         env:
           REQUIRE_DENYLIST: '1'
         run: npm run check
-      - run: npm run check:testers
