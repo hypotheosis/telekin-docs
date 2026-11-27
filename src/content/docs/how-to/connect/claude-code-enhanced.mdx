@@ -48,10 +48,12 @@ reminds you of it at the start of every session.
 
 - To write, call `open_changeset` once and pass its handle as `changeset`
   to every edit and to `publish`. Nothing is saved until `publish`.
-- When we establish something worth remembering (how something works, a
-  fix, a decision, a preference), add or update the matching concept:
-  `create_concept` for new ones (with an `index_summary`), and a `log`
-  entry describing the change.
+- The catalog only improves when it grows. When we establish something
+  new (how something works, a fix, a decision, a preference), or find
+  something in Telekin that's out of date, add or update the matching
+  concept by default, without asking: `create_concept` for new ones (with
+  an `index_summary`), and a `log` entry describing the change. Then tell
+  me what you saved, so I can say if I don't want it kept.
 - Write with the server's tools (`create_concept`, `edit_document`,
   `replace_body`, `set_frontmatter`). Never rebuild whole files, and never
   type timestamps; the server writes them.

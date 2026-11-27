@@ -77,6 +77,10 @@ Open Copilot chat in agent mode and ask: **"What tools do you have from Telekin?
 
 If it won't connect, check that the URL ends in `/mcp`.
 
+## Make it use Telekin on its own
+
+To make Copilot check Telekin by itself, and save to it instead of Copilot Memory, add the [text for VS Code](/how-to/guides/use-without-asking/#vs-code-github-copilot) to a user instructions file.
+
 ## Undo it
 
 Delete the `"telekin"` entry from the MCP config file, or remove the server from VS Code's MCP server list. To disconnect it from Telekin's side, open **My grants** in your Telekin console, choose the VS Code connection, then **Revoke**. If you used a key, revoke it on **My keys**.

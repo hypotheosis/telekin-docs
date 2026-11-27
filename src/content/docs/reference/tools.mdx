@@ -15,6 +15,7 @@ When you ask your AI to remember something, Telekin tells it to save it to your 
 
 | Tool | What it does for you |
 |---|---|
+| `guide` | Gives your AI Telekin's instructions on how to use your memory: when to look, when to save, and how saving works. Telekin also sends these when a chat starts, but some AI apps, such as the Claude apps, don't pass them on, and keep most tools hidden until they're needed. Calling `guide` is how the AI reads them there. |
 | `search` | Looks for concepts (the pages in your memory) that match all of your words, and shows a short snippet of each hit. |
 | `get_concept` | Reads one concept in full, or just one section of a long one. If the section isn't there, it lists the sections that are. |
 | `read_document` | Reads a folder's contents page (`index.md`), the change log (`log.md`) or the catalog's house rules (`AGENTS.md`). |
@@ -37,7 +38,7 @@ Nothing your AI writes is visible until it publishes. Until then it sits in a dr
 | `remove_source` | Removes a recorded source that is no longer cited. |
 | `log` | Adds a dated line to the catalog's change log. |
 | `index` | Lists a concept on its folder's contents page, or describes a folder on its parent's contents page. For a concept that's already listed, it changes that listing's one-line summary, for example to replace a placeholder description. |
-| `pending_changes` | Shows exactly what the draft would change, line by line. |
+| `pending_changes` | Shows exactly what the draft would change, line by line. It also warns when someone else has published a page since the draft edited it: publishing would be refused, so the AI must redo that edit first. |
 | `lint` | Checks the draft, or the whole catalog, for mistakes such as broken links. |
 | `publish` | Makes the draft real, with a short message saying what changed. |
 | `discard` | Throws away some or all of a draft. Published concepts are untouched. |
@@ -91,7 +92,7 @@ Whether your AI app asks you before each tool runs depends on the app. Many apps
 
 Telekin tells your app what kind each tool is, and some apps use that to decide when to ask:
 
-- **Reading tools**, such as `search`, `get_concept`, `history` and `recent_changes`, only look.
+- **Reading tools**, such as `guide`, `search`, `get_concept`, `history` and `recent_changes`, only look.
 - **Tools that add something**, such as `open_changeset`, `create_concept`, `add_source`, `log` and `question`, add to a draft without changing what's already there.
 - **Tools that change or remove existing content** are marked that way: `edit_document`, `replace_body`, `set_frontmatter`, `stamp`, `review`, `index`, `repair_indexes`, `remove_source`, `unquestion`, `revert`, `move_concept` and `split_concept`, as well as `delete_concept`, `discard` and `publish`. An app that asks before such tools will ask for these.
 - **`send_feedback`** is marked as reaching outside Telekin, since it sends your message to a form service.

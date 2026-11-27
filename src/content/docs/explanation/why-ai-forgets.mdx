@@ -15,11 +15,11 @@ Long chats make it worse, since instructions given early can fade as the convers
 
 ## What helps
 
-- **Custom instructions.** Add one short instruction to your AI app's settings, telling it to search Telekin whenever you mention a project, system or person, and to record what is worth keeping. See [Get your AI to use Telekin without being asked](/how-to/guides/use-without-asking/).
+- **Custom instructions.** Add a short instruction to your AI app's settings, telling it that Telekin is its memory, to search Telekin before answering, and to save new things by default and tell you what it saved. See [Get your AI to use Telekin without being asked](/how-to/guides/use-without-asking/).
 - **Name things in your question.** A question that names a project or system gives your AI something to search for; "why is it slow?" doesn't. Examples are in the [guide's habits](/how-to/guides/use-without-asking/#habits-that-help).
 - **Ask it to check.** Telling it to check Telekin before answering works every time — the [Prompt library](/reference/prompt-library/#check-before-answering) has a ready prompt.
 - **Hooks.** Claude Code can run a small startup script that reminds it, at the start of every session, which catalog is yours. Together with instructions in its global `CLAUDE.md` file, it makes Claude Code check Telekin on its own. See [Connect Claude Code, enhanced](/how-to/connect/claude-code-enhanced/).
 
 ## What Telekin does on its side
 
-Telekin's tool descriptions now steer the AI on their own: they tell it to search your memory when you ask what it remembers or refer to something you told it before, and to save things worth keeping that you share, without being asked, telling you what it saved. Apps that follow tool descriptions closely do more of this without help. Not every app does, so the steps above stay the reliable way.
+Telekin's tool descriptions now steer the AI on their own. Each one starts by saying what it's for, so apps that show the AI only the first few words of each tool, such as the Claude apps, still get the point: `create_concept` starts "Save what the person wants kept", and `search` starts "Recall what the person told you". The descriptions tell the AI to search your memory when you ask what it remembers or refer to something you told it before, and to save things worth keeping that you share, without being asked, telling you what it saved. Telekin also has a `guide` tool that gives the AI its full instructions on using your memory, for apps that don't pass on the instructions Telekin sends when a chat starts. Apps that follow tool descriptions closely do more of this without help. Not every app does, so the steps above stay the reliable way.

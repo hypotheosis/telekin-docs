@@ -46,6 +46,10 @@ If your app only supports local (stdio) servers, it can't connect.
 
 Ask your AI: **"What tools do you have from Telekin?"** You should see a list of tools for searching and writing your memory. If it can't connect, check that the URL ends in `/mcp`, and, if you use a key, that the header value starts with `Bearer `.
 
+## Make it use Telekin on its own
+
+To make your app check Telekin by itself and save to it by default, add the [text for any other app](/how-to/guides/use-without-asking/#any-other-app) wherever it keeps instructions for every chat.
+
 ## Undo it
 
 Remove the server from your app's MCP settings. Then, in your Telekin console, revoke its key on **My keys**, or its connection on **My grants** if it signed in in the browser.
